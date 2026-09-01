@@ -1,0 +1,334 @@
+@import "tailwindcss";
+
+/* ============================================================
+   INSCA design system
+   Palette derived from the INSCA logo: red wordmark (#e01f26)
+   and the tricolour dumbbell plates (saffron / white / green)
+   with royal-blue bars. SDAT blue/gold is reserved strictly for
+   the accreditation lockup.
+   Type: Sora (display) + Inter (body) — carried over from the
+   original INSCA site so the brand still reads as itself.
+   ============================================================ */
+
+@theme {
+  /* Brand */
+  --color-insca-50: #fef2f2;
+  --color-insca-100: #fdecec;
+  --color-insca-200: #fbdedf;
+  --color-insca-300: #f5b5b7;
+  --color-insca-400: #ec7276;
+  --color-insca-500: #e01f26;
+  --color-insca-600: #c8181e;
+  --color-insca-700: #a5141a;
+  --color-insca-800: #841319;
+  --color-insca-900: #6b1418;
+
+  /* Logo accents — used sparingly */
+  --color-saffron: #ff8a3c;
+  --color-tricolour-green: #16a34a;
+  --color-royal: #1e40af;
+
+  /* SDAT lockup only */
+  --color-sdat-blue: #1b4ea0;
+  --color-sdat-gold: #f5c518;
+
+  /* Ink scale — the dark, institutional end of the system */
+  --color-ink-950: #0a0c11;
+  --color-ink-900: #0f1218;
+  --color-ink-800: #161a22;
+  --color-ink-700: #1f2531;
+  --color-ink-600: #2c3441;
+  --color-ink-500: #454e5e;
+  --color-ink-400: #6b7484;
+  --color-ink-300: #98a0ae;
+  --color-ink-200: #c7ccd6;
+  --color-ink-100: #e4e7ed;
+  --color-ink-50: #f4f6f9;
+
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-canvas-2: #f7f8fb;
+  --color-canvas-3: #eef1f6;
+  --color-hairline: #e6e9f0;
+
+  /* Type */
+  --font-display: var(--font-sora), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+
+  /* Motion — one easing curve for the whole site */
+  --ease-insca: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(15, 18, 24, 0.04), 0 8px 24px rgba(15, 18, 24, 0.06);
+  --shadow-lift: 0 2px 4px rgba(15, 18, 24, 0.05), 0 18px 44px rgba(15, 18, 24, 0.11);
+  --shadow-red: 0 10px 30px rgba(224, 31, 38, 0.28);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 92px;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Guards against any single element causing a horizontal scrollbar */
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: var(--color-insca-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-insca-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Dark sections invert the focus ring so it stays visible */
+  .on-dark :focus-visible {
+    outline-color: #fff;
+  }
+}
+
+@layer utilities {
+  /* Page gutter — one source of truth for horizontal rhythm */
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 56px);
+  }
+
+  .wrap-tight {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 56px);
+  }
+
+  /* Vertical section rhythm */
+  .section-y {
+    padding-block: clamp(64px, 8vw, 128px);
+  }
+
+  .section-y-sm {
+    padding-block: clamp(48px, 6vw, 88px);
+  }
+
+  /* Fluid type roles */
+  .t-display {
+    font-size: clamp(2.1rem, 1.35rem + 3.6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .t-h2 {
+    font-size: clamp(1.75rem, 1.25rem + 2.1vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.028em;
+  }
+
+  .t-h3 {
+    font-size: clamp(1.3rem, 1.1rem + 0.85vw, 1.85rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  .t-lead {
+    font-size: clamp(1.02rem, 0.97rem + 0.3vw, 1.2rem);
+    line-height: 1.65;
+  }
+
+  .t-eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Numerals that line up in stat blocks and tables */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /*
+   * IMAGE SCRIMS
+   *
+   * INSCA's photography is one of the strongest things it owns, so a scrim
+   * darkens only the region that actually sits behind text — never the whole
+   * frame. Each variant keeps roughly 85–94% opacity where words land and
+   * falls away to 10–30% across the rest of the photograph, so the image
+   * stays legible as an image.
+   *
+   * Never stack two of these on one photo.
+   */
+  /*
+   * Stops are set from contrast maths, not by eye. Against a worst-case
+   * white pixel, white text needs ~0.82 alpha to clear 4.5:1 (body) and
+   * ~0.70 to clear 3:1 (large display text). The copy column ends near 64%
+   * of the viewport at 1440, so the ramp holds ≥0.80 to 62% and only then
+   * falls away — leaving the right quarter of the frame at 8–33%, where the
+   * photograph reads properly.
+   */
+  .scrim-left {
+    background: linear-gradient(
+      90deg,
+      rgb(10 12 17 / 0.95) 0%,
+      rgb(10 12 17 / 0.9) 50%,
+      rgb(10 12 17 / 0.8) 62%,
+      rgb(10 12 17 / 0.45) 74%,
+      rgb(10 12 17 / 0.18) 88%,
+      rgb(10 12 17 / 0.08) 100%
+    );
+  }
+
+  /*
+   * Narrow screens: copy is bottom-anchored, so the lower half carries the
+   * contrast and the top of the photograph stays clear.
+   */
+  .scrim-bottom {
+    background: linear-gradient(
+      0deg,
+      rgb(10 12 17 / 0.96) 0%,
+      rgb(10 12 17 / 0.93) 42%,
+      rgb(10 12 17 / 0.86) 60%,
+      rgb(10 12 17 / 0.62) 73%,
+      rgb(10 12 17 / 0.3) 88%,
+      rgb(10 12 17 / 0.14) 100%
+    );
+  }
+
+  /* Just enough to seat a caption on a photo. */
+  .scrim-caption {
+    background: linear-gradient(
+      0deg,
+      rgb(10 12 17 / 0.86) 0%,
+      rgb(10 12 17 / 0.42) 28%,
+      rgb(10 12 17 / 0.08) 55%,
+      transparent 75%
+    );
+  }
+
+  /*
+   * A title plus a paragraph seated on an image card — needs more reach up
+   * the frame than a one-line caption, but still clears the top half.
+   */
+  .scrim-card {
+    background: linear-gradient(
+      0deg,
+      rgb(10 12 17 / 0.93) 0%,
+      rgb(10 12 17 / 0.86) 22%,
+      rgb(10 12 17 / 0.6) 42%,
+      rgb(10 12 17 / 0.22) 65%,
+      transparent 88%
+    );
+  }
+
+  /*
+   * Centred copy over full-bleed media (final CTA, centred page headers).
+   * A conversion block, so legibility outranks image visibility here — but
+   * the edges stay open enough that the room behind still reads.
+   */
+  .scrim-center {
+    background:
+      radial-gradient(
+        92% 80% at 50% 50%,
+        rgb(10 12 17 / 0.95) 0%,
+        rgb(10 12 17 / 0.9) 48%,
+        rgb(10 12 17 / 0.76) 76%,
+        rgb(10 12 17 / 0.58) 100%
+      );
+  }
+
+  /* Hairline grid used behind dark sections */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Radix accordion — animates to its measured content height */
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to   { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to   { height: 0; opacity: 0; }
+}
+
+/* Marquee — transform-only, so it stays off the main thread */
+@keyframes insca-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  animation: insca-marquee var(--marquee-duration, 42s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .animate-marquee {
+    animation: none;
+  }
+
+  /*
+   * Scroll reveals start at opacity 0 and are animated in by framer-motion.
+   * When motion is reduced that animation is suppressed, which would leave
+   * the content permanently invisible — so force every reveal to its final
+   * state. `!important` is required here: it is the one case that outranks
+   * the inline styles framer-motion writes. Scoped to [data-reveal] so it
+   * never touches hover transforms elsewhere.
+   */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
