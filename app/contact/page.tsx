@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 import { PageHeader } from "@/components/layout/page-header";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
@@ -24,6 +25,13 @@ const channels = [
     value: contact.phone,
     href: contact.phoneHref,
     note: "Course registration and general enquiries",
+  },
+  {
+    icon: WhatsAppIcon,
+    label: "WhatsApp",
+    value: contact.phone,
+    href: contact.whatsapp,
+    note: "Message us directly about Level 1A",
   },
   {
     icon: Mail,
@@ -67,7 +75,7 @@ export default function ContactPage() {
 
       <section className="section-y">
         <div className="wrap">
-          <RevealGroup className="grid gap-4 lg:grid-cols-3" staggerChildren={0.08}>
+          <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" staggerChildren={0.08}>
             {channels.map(({ icon: Icon, label, value, href, note }) => (
               <RevealItem key={label}>
                 <a

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { contact, site, venue } from "@/data/site";
 import { level1A } from "@/data/course";
 import { InscaLogo, SdatLogo } from "./brand";
@@ -78,6 +79,17 @@ export function Footer() {
                 >
                   <Phone className="size-4 shrink-0 text-insca-400" />
                   {contact.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-9 items-center gap-3 py-1 transition-colors duration-300 hover:text-white"
+                >
+                  <WhatsAppIcon className="size-4 shrink-0 text-insca-400" />
+                  WhatsApp enquiry
                 </a>
               </li>
               <li>

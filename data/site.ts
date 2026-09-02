@@ -23,6 +23,16 @@ export const contact = {
   /** Official course email (from the Level 1A brochure). */
   email: "inscaindia@gmail.com",
   emailHref: "mailto:inscaindia@gmail.com",
+  /**
+   * WhatsApp enquiry line — the same number the original INSCA site used for
+   * registrations, carried over so that route to a human is not lost. The
+   * Google Form remains the primary registration path per the brochure.
+   */
+  whatsapp:
+    "https://wa.me/918277713616?text=" +
+    encodeURIComponent(
+      "Hello INSCA, I would like to know more about the Level 1A Strength & Conditioning Certification.",
+    ),
 } as const;
 
 export const venue = {
@@ -42,10 +52,11 @@ export const venue = {
 } as const;
 
 export const nav = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Level 1A", href: "/courses/level-1a" },
   { label: "Faculty", href: "/courses/level-1a#faculty" },
-  { label: "Workshops", href: "/workshops" },
+  { label: "Gallery", href: "/workshops" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

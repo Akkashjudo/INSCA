@@ -4,6 +4,7 @@ import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { level1A } from "@/data/course";
 import { contact } from "@/data/site";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 const details = [
   { icon: MapPin, value: level1A.venueShort },
@@ -53,8 +54,9 @@ export function FinalCta() {
               Register for INSCA Level 1A
               <ArrowGlyph />
             </ButtonLink>
-            <ButtonLink href={contact.phoneHref} variant="ghostLight" size="lg">
-              Call {contact.phone}
+            <ButtonLink href={contact.whatsapp} variant="ghostLight" size="lg">
+              <WhatsAppIcon className="size-[1.15em]" />
+              Enquire on WhatsApp
             </ButtonLink>
           </div>
         </Reveal>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { level1A } from "@/data/course";
 import { contact } from "@/data/site";
 import { EASE } from "@/lib/motion";
@@ -42,11 +42,13 @@ export function StickyCta() {
               Register for Level 1A
             </a>
             <a
-              href={contact.phoneHref}
-              aria-label={`Call INSCA on ${contact.phone}`}
-              className="grid size-12 shrink-0 place-items-center rounded-full border border-ink-200 text-ink-900 active:scale-95"
+              href={contact.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Enquire about Level 1A on WhatsApp"
+              className="grid size-12 shrink-0 place-items-center rounded-full border border-tricolour-green/40 bg-tricolour-green/10 text-tricolour-green active:scale-95"
             >
-              <Phone className="size-5" />
+              <WhatsAppIcon className="size-5" />
             </a>
           </div>
         </motion.div>
