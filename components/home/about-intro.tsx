@@ -52,29 +52,33 @@ export function AboutIntro() {
         </div>
 
         <div>
-          <div className="relative">
+          <figure className="relative">
             <ImageReveal className="aspect-4/3 rounded-2xl">
               <Image
                 src="/workshops/cohort/group-photo.webp"
                 alt="The full INSCA cohort at the Tamil Nadu Centre for Sports Science, Chennai"
                 fill
                 sizes="(max-width: 1024px) 100vw, 46vw"
-                className="object-cover"
+                className="object-cover object-[50%_42%]"
               />
+              {/* Overlay only where there is room for it */}
+              <div aria-hidden="true" className="absolute inset-0 hidden scrim-caption sm:block" />
             </ImageReveal>
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-2xl">
-              <div className="absolute inset-0 scrim-caption rounded-b-2xl" />
-              <div className="relative p-5 sm:p-6">
-                <p className="font-display text-base font-semibold text-white">
-                  Tamil Nadu Centre for Sports Science
-                </p>
-                <p className="mt-0.5 text-sm text-ink-200">
-                  SDAT · Jawaharlal Nehru Stadium, Chennai
-                </p>
-              </div>
-            </div>
-          </div>
+            {/*
+              The caption wraps to three lines at 320px, where overlaying it
+              covered 62% of the photograph. It sits in normal flow below the
+              image on narrow screens and only overlays from `sm` up.
+            */}
+            <figcaption className="mt-3 sm:absolute sm:inset-x-0 sm:bottom-0 sm:mt-0 sm:p-6">
+              <p className="font-display text-[0.95rem] font-semibold text-ink-900 sm:text-base sm:text-white">
+                Tamil Nadu Centre for Sports Science
+              </p>
+              <p className="mt-0.5 text-[0.85rem] text-ink-500 sm:text-sm sm:text-ink-200">
+                SDAT · Jawaharlal Nehru Stadium, Chennai
+              </p>
+            </figcaption>
+          </figure>
 
           <RevealGroup
             className="mt-5 grid grid-cols-2 gap-3 sm:gap-4"

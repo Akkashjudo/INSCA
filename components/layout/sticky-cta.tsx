@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { level1A } from "@/data/course";
 import { contact } from "@/data/site";
@@ -24,7 +24,7 @@ export function StickyCta() {
   return (
     <AnimatePresence>
       {show ? (
-        <motion.div
+        <m.div
           initial={{ y: "110%" }}
           animate={{ y: 0 }}
           exit={{ y: "110%" }}
@@ -51,7 +51,7 @@ export function StickyCta() {
               <WhatsAppIcon className="size-5" />
             </a>
           </div>
-        </motion.div>
+        </m.div>
       ) : null}
     </AnimatePresence>
   );

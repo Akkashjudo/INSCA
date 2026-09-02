@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { ImageReveal } from "@/components/ui/image-reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { level1A } from "@/data/course";
-import { fadeIn } from "@/lib/motion";
 
 export function WhyInsca() {
   return (
@@ -38,29 +38,42 @@ export function WhyInsca() {
           </RevealGroup>
         </div>
 
-        <Reveal variants={fadeIn}>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="relative aspect-3/4 overflow-hidden rounded-2xl">
-              <Image
-                src="/workshops/practical/sprint-start.webp"
-                alt="Sprint start position demonstrated in front of INSCA participants"
-                fill
-                sizes="(max-width: 1024px) 45vw, 24vw"
-                className="object-cover object-[58%_center]"
-              />
-            </div>
-            <div className="relative mt-8 aspect-3/4 overflow-hidden rounded-2xl">
+        <div>
+          {/*
+            Both photographs are 1600x801 (ratio 2.00). They previously sat in
+            aspect-3/4 portrait frames, which threw away ~62% of each frame and
+            left the second one on a default centre crop — the subject ended up
+            badly composed. They now keep a landscape ratio with a focal point
+            chosen per photograph, and simply stack on narrow screens.
+          */}
+          <ImageReveal className="aspect-16/10 rounded-2xl">
+            <Image
+              src="/workshops/practical/sprint-start.webp"
+              alt="Sprint start position demonstrated in front of INSCA participants"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-cover object-[54%_46%]"
+            />
+          </ImageReveal>
+
+          {/*
+            Narrower and right-aligned from `sm` for editorial rhythm. It is
+            deliberately NOT overlapped onto the frame above: an overlap risks
+            covering a subject and reads as a mistake rather than intent.
+          */}
+          <div className="mt-4 sm:ml-auto sm:mt-5 sm:w-[78%]">
+            <ImageReveal className="aspect-16/10 rounded-2xl" delay={0.08}>
               <Image
                 src="/workshops/analysis/force-curve.webp"
                 alt="Force–velocity data reviewed during an INSCA applied sports science session"
                 fill
-                sizes="(max-width: 1024px) 45vw, 24vw"
-                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 36vw"
+                className="object-cover object-[28%_center]"
               />
-            </div>
+            </ImageReveal>
           </div>
 
-          <div className="mt-4 rounded-2xl border border-hairline bg-canvas-2 p-6 sm:mt-5 sm:p-7">
+          <div className="mt-6 rounded-2xl border border-hairline bg-canvas-2 p-6 sm:mt-8 sm:p-7">
             <p className="font-display text-lg font-bold leading-snug text-ink-900 sm:text-xl">
               &ldquo;{level1A.positioning}&rdquo;
             </p>
@@ -70,7 +83,7 @@ export function WhyInsca() {
               Development Authority of Tamil Nadu.
             </p>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

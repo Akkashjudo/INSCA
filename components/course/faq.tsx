@@ -2,7 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { faqs } from "@/data/faq";
 import { EASE } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
@@ -23,7 +23,7 @@ export function Faq() {
 
         <Accordion.Root type="single" collapsible defaultValue={faqs[0].question} className="mt-11">
           {faqs.map((item, i) => (
-            <motion.div
+            <m.div
               key={item.question}
               data-reveal=""
               initial={{ opacity: 0, y: 16 }}
@@ -52,7 +52,7 @@ export function Faq() {
                   </p>
                 </Accordion.Content>
               </Accordion.Item>
-            </motion.div>
+            </m.div>
           ))}
         </Accordion.Root>
       </div>

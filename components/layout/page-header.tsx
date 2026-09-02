@@ -124,7 +124,7 @@ export function PageHeader({
               src={image}
               alt={imageAlt}
               fill
-              priority
+              loading="lazy"
               sizes="(max-width: 1280px) 100vw, 1240px"
               className="object-cover"
               style={{ objectPosition: imagePosition }}

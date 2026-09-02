@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { StickyCta } from "@/components/layout/sticky-cta";
+import { MotionProvider } from "@/components/motion-provider";
 import { OrganizationSchema } from "@/components/seo/schema";
 import { site } from "@/data/site";
 
@@ -108,10 +109,12 @@ export default function RootLayout({
         </noscript>
 
         <OrganizationSchema />
-        <Navbar />
-        <main id="main">{children}</main>
-        <Footer />
-        <StickyCta />
+        <MotionProvider>
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
+          <StickyCta />
+        </MotionProvider>
       </body>
     </html>
   );

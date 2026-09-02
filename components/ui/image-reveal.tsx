@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { ReactNode } from "react";
 import { EASE, viewportOnce } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ export function ImageReveal({
   delay?: number;
 }) {
   return (
-    <motion.div
+    <m.div
       data-reveal=""
       className={cn("relative overflow-hidden", className)}
       initial={{ clipPath: "inset(12% 0% 0% 0%)", opacity: 0 }}
@@ -36,7 +36,7 @@ export function ImageReveal({
       viewport={viewportOnce}
       transition={{ duration: 0.85, ease: EASE, delay }}
     >
-      <motion.div
+      <m.div
         data-reveal=""
         className="absolute inset-0"
         initial={{ scale: 1.06 }}
@@ -45,7 +45,7 @@ export function ImageReveal({
         transition={{ duration: 1.1, ease: EASE, delay }}
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

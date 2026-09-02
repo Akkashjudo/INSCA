@@ -1,13 +1,13 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 import { riseIn, stagger, viewportOnce } from "@/lib/motion";
 
 /**
  * Tags a reveal may render as.
  *
- * These are looked up on framer-motion's `motion` proxy, which caches one
+ * These are looked up on framer-motion's `m` proxy, which caches one
  * component per tag. Creating the component inside render instead (via
  * `motion.create`) produces a new component identity every render, which
  * remounts the element and resets its in-view observer — the reveal then
@@ -23,7 +23,7 @@ type RevealTag =
   | "span"
   | "p";
 
-const motionFor = (tag: RevealTag) => motion[tag];
+const motionFor = (tag: RevealTag) => m[tag];
 
 /**
  * REDUCED MOTION

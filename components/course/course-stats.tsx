@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { level1A } from "@/data/course";
 import { EASE } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
@@ -66,7 +66,7 @@ export function CourseStats() {
 
         <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
           {level1A.stats.map((stat, i) => (
-            <motion.div
+            <m.div
               key={stat.label}
               data-reveal=""
               initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ export function CourseStats() {
               <div className="mt-2.5 text-[0.82rem] font-medium leading-snug text-ink-500">
                 {stat.label}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

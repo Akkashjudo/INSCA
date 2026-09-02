@@ -21,8 +21,8 @@ export function InscaLogo({
     <Image
       src="/brand/insca-logo.png"
       alt={`${site.shortName} — ${site.name}`}
-      width={1560}
-      height={314}
+      width={720}
+      height={145}
       priority={priority}
       sizes="(max-width: 640px) 170px, 210px"
       className={cn("h-auto w-[158px] sm:w-[192px]", className)}

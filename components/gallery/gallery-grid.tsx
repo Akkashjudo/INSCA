@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import {
   categoryLabels,
@@ -82,7 +82,7 @@ export function GalleryGrid() {
       {/* Grid */}
       <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
         {images.map((img, i) => (
-          <motion.figure
+          <m.figure
             key={img.src}
             layout
             data-reveal=""
@@ -116,7 +116,7 @@ export function GalleryGrid() {
                 </span>
               </span>
             </button>
-          </motion.figure>
+          </m.figure>
         ))}
       </div>
 
@@ -129,7 +129,7 @@ export function GalleryGrid() {
           {active ? (
             <Dialog.Portal forceMount>
               <Dialog.Overlay asChild>
-                <motion.div
+                <m.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -145,7 +145,7 @@ export function GalleryGrid() {
                   if (e.key === "ArrowLeft") move(-1);
                 }}
               >
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
@@ -203,7 +203,7 @@ export function GalleryGrid() {
                   >
                     <X className="size-5" />
                   </Dialog.Close>
-                </motion.div>
+                </m.div>
               </Dialog.Content>
             </Dialog.Portal>
           ) : null}

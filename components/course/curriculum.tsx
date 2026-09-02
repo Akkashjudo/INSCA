@@ -2,7 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { level1A } from "@/data/course";
 import { EASE } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
@@ -55,7 +55,7 @@ export function Curriculum() {
           className="space-y-3"
         >
           {level1A.curriculum.map((block, i) => (
-            <motion.div
+            <m.div
               key={block.group}
               data-reveal=""
               initial={{ opacity: 0, y: 18 }}
@@ -106,7 +106,7 @@ export function Curriculum() {
                   </ul>
                 </Accordion.Content>
               </Accordion.Item>
-            </motion.div>
+            </m.div>
           ))}
         </Accordion.Root>
       </div>

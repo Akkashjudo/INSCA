@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { nav } from "@/data/site";
@@ -93,13 +93,14 @@ export function Navbar() {
                 )}
               >
                 {item.label}
-                {isActive(item.href) ? (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-insca-500"
-                    transition={{ duration: 0.35, ease: EASE }}
-                  />
-                ) : null}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-left rounded-full bg-insca-500",
+                    "transition-transform duration-400 [transition-timing-function:var(--ease-insca)]",
+                    isActive(item.href) ? "scale-x-100" : "scale-x-0",
+                  )}
+                />
               </Link>
             ))}
           </nav>
@@ -132,7 +133,7 @@ export function Navbar() {
 
       <AnimatePresence>
         {open ? (
-          <motion.div
+          <m.div
             id="mobile-menu"
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,7 +143,7 @@ export function Navbar() {
           >
             <nav aria-label="Mobile" className="wrap flex flex-col py-3">
               {nav.map((item, i) => (
-                <motion.div
+                <m.div
                   key={item.href}
                   initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -157,7 +158,7 @@ export function Navbar() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
 
               <div className="flex flex-col gap-2.5 py-5">
@@ -169,7 +170,7 @@ export function Navbar() {
                 </ButtonLink>
               </div>
             </nav>
-          </motion.div>
+          </m.div>
         ) : null}
       </AnimatePresence>
     </>
