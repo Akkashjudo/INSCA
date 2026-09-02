@@ -107,7 +107,7 @@ export function ExperiencePillars() {
 
         <RevealGroup
           className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          staggerChildren={0.08}
+          staggerChildren={0.05}
         >
           <RevealItem variants={fadeIn} className="sm:col-span-2 lg:row-span-2">
             <Pillar

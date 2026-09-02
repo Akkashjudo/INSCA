@@ -22,7 +22,7 @@ export function FeaturedCourse() {
       <div aria-hidden="true" className="absolute inset-0 grid-lines opacity-70" />
       <div
         aria-hidden="true"
-        className="absolute -right-32 top-1/4 size-[520px] rounded-full bg-insca-500/12 blur-[130px]"
+        className="absolute -right-32 top-1/4 hidden size-[440px] rounded-full bg-insca-500/12 blur-[100px] lg:block"
       />
 
       <div className="wrap relative">
@@ -76,7 +76,7 @@ export function FeaturedCourse() {
               <p className="t-lead mt-5 text-ink-300">{level1A.overview}</p>
             </Reveal>
 
-            <RevealGroup className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2" delayChildren={0.06}>
+            <RevealGroup className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2" delayChildren={0.04}>
               {specs.map(({ icon: Icon, label, value }) => (
                 <RevealItem key={label}>
                   <span className="flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-ink-400">
@@ -90,7 +90,7 @@ export function FeaturedCourse() {
               ))}
             </RevealGroup>
 
-            <Reveal delay={0.1}>
+            <Reveal delay={0.06}>
               <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-xl border border-white/12 bg-white/5 px-5 py-4">
                 <span className="font-display text-2xl font-bold text-white">
                   {formatFee(level1A.fees[0].amount)}

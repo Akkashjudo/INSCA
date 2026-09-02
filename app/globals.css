@@ -301,6 +301,45 @@
   }
 }
 
+/*
+ * ABOVE-THE-FOLD ENTRANCE
+ *
+ * The hero animates in CSS, not JavaScript. Framer Motion server-renders its
+ * initial state as inline `opacity:0`, so the hero stayed invisible until the
+ * bundle downloaded, hydrated and (with LazyMotion) resolved its feature set
+ * — a genuine blank screen on a slow connection. CSS starts the moment the
+ * stylesheet parses, long before any JS, so the first screen is never blank.
+ *
+ * Total choreography is ~0.55s and every element is in motion within 0.2s.
+ */
+@keyframes enter-up {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes enter-line {
+  from { transform: translate3d(0, 100%, 0); }
+  to   { transform: none; }
+}
+
+.enter {
+  animation: enter-up 0.42s var(--ease-insca) both;
+}
+
+.enter-line {
+  display: block;
+  animation: enter-line 0.5s var(--ease-insca) both;
+}
+
+/* Small, tight offsets — nothing waits more than a fifth of a second. */
+.d-0 { animation-delay: 0ms; }
+.d-1 { animation-delay: 50ms; }
+.d-2 { animation-delay: 90ms; }
+.d-3 { animation-delay: 130ms; }
+.d-4 { animation-delay: 170ms; }
+.d-5 { animation-delay: 210ms; }
+.d-6 { animation-delay: 250ms; }
+
 /* Radix accordion — animates to its measured content height */
 @keyframes accordion-down {
   from { height: 0; opacity: 0; }
@@ -341,6 +380,13 @@
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+  }
+
+  .enter,
+  .enter-line {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   *,

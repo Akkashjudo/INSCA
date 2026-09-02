@@ -42,7 +42,7 @@ export function PageHeader({
     <section className="relative isolate overflow-hidden bg-canvas-2 pt-32 sm:pt-40">
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute inset-0 hero-grid" />
-        <div className="absolute -right-40 top-[30%] size-[480px] rounded-full bg-insca-500/[0.04] blur-[140px]" />
+        <div className="absolute -right-40 top-[30%] hidden size-[420px] rounded-full bg-insca-500/[0.04] blur-[100px] lg:block" />
       </div>
 
       <div className="wrap relative pb-12 sm:pb-16">
@@ -81,7 +81,7 @@ export function PageHeader({
         ) : null}
 
         <RevealGroup
-          staggerChildren={0.09}
+          staggerChildren={0.05}
           className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}
         >
           {eyebrow ? (
@@ -113,7 +113,7 @@ export function PageHeader({
           ) : null}
         </RevealGroup>
 
-        {children ? <Reveal delay={0.14}>{children}</Reveal> : null}
+        {children ? <Reveal delay={0.08}>{children}</Reveal> : null}
       </div>
 
       {/* The photograph, shown plainly and in full */}

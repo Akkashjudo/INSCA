@@ -31,18 +31,18 @@ export function ImageReveal({
     <m.div
       data-reveal=""
       className={cn("relative overflow-hidden", className)}
-      initial={{ clipPath: "inset(12% 0% 0% 0%)", opacity: 0 }}
+      initial={{ clipPath: "inset(8% 0% 0% 0%)", opacity: 0.9 }}
       whileInView={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
       viewport={viewportOnce}
-      transition={{ duration: 0.85, ease: EASE, delay }}
+      transition={{ duration: 0.5, ease: EASE, delay }}
     >
       <m.div
         data-reveal=""
         className="absolute inset-0"
-        initial={{ scale: 1.06 }}
+        initial={{ scale: 1.04 }}
         whileInView={{ scale: 1 }}
         viewport={viewportOnce}
-        transition={{ duration: 1.1, ease: EASE, delay }}
+        transition={{ duration: 0.7, ease: EASE, delay }}
       >
         {children}
       </m.div>

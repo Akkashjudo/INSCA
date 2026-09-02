@@ -70,7 +70,7 @@ export function CourseDetails() {
 
           {/* Pricing + inclusions */}
           <div className="space-y-5">
-            <RevealGroup className="grid gap-4 sm:grid-cols-2" staggerChildren={0.09}>
+            <RevealGroup className="grid gap-4 sm:grid-cols-2" staggerChildren={0.05}>
               {level1A.fees.map((fee) => (
                 <RevealItem
                   key={fee.label}
@@ -105,7 +105,7 @@ export function CourseDetails() {
               ))}
             </RevealGroup>
 
-            <Reveal delay={0.1}>
+            <Reveal delay={0.06}>
               <div className="rounded-2xl border border-hairline bg-white p-6">
                 <h3 className="font-display text-[0.8rem] font-bold uppercase tracking-[0.13em] text-ink-900">
                   What&apos;s included

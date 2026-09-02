@@ -19,7 +19,7 @@ export function Audience() {
 
         <RevealGroup
           className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3"
-          staggerChildren={0.06}
+          staggerChildren={0.04}
         >
           {level1A.audience.map((item, i) => (
             <RevealItem

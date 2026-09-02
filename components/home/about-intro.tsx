@@ -32,7 +32,7 @@ export function AboutIntro() {
             }
           />
 
-          <Reveal delay={0.08}>
+          <Reveal delay={0.05}>
             <div className="mt-7 space-y-5 text-ink-500 t-lead">
               {aboutParagraphs.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
@@ -82,7 +82,7 @@ export function AboutIntro() {
 
           <RevealGroup
             className="mt-5 grid grid-cols-2 gap-3 sm:gap-4"
-            delayChildren={0.1}
+            delayChildren={0.05}
           >
             {facts.map((f) => (
               <RevealItem

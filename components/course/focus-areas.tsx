@@ -54,7 +54,7 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
           </div>
 
           {/* The index */}
-          <RevealGroup as="ul" staggerChildren={0.055}>
+          <RevealGroup as="ul" staggerChildren={0.04}>
             {level1A.focusAreas.map((area, i) => (
               <RevealItem
                 as="li"

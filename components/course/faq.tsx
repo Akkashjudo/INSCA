@@ -4,7 +4,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
 import { m } from "framer-motion";
 import { faqs } from "@/data/faq";
-import { EASE } from "@/lib/motion";
+import { EASE, viewportOnce } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 
 export function Faq() {
@@ -26,10 +26,10 @@ export function Faq() {
             <m.div
               key={item.question}
               data-reveal=""
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0.85, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.45, ease: EASE, delay: i * 0.04 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.38, ease: EASE, delay: i * 0.03 }}
             >
               <Accordion.Item
                 value={item.question}

@@ -95,7 +95,7 @@ export function FacultySection() {
 
         <RevealGroup
           className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          staggerChildren={0.06}
+          staggerChildren={0.04}
         >
           {level1AFaculty.map((person) => (
             <RevealItem key={person.name} className="h-full">

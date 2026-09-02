@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { m, useInView, useReducedMotion } from "framer-motion";
 import { level1A } from "@/data/course";
-import { EASE } from "@/lib/motion";
+import { EASE, viewportOnce } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 
 /**
@@ -69,10 +69,10 @@ export function CourseStats() {
             <m.div
               key={stat.label}
               data-reveal=""
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0.85, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.55, ease: EASE, delay: i * 0.07 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.4, ease: EASE, delay: i * 0.045 }}
               className="rounded-2xl border border-hairline bg-white p-5 text-center sm:p-6 last:max-lg:col-span-2"
             >
               <div className="font-display text-2xl font-bold leading-none text-insca-500 sm:text-3xl">

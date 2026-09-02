@@ -20,7 +20,7 @@ export function Footer() {
       <div aria-hidden="true" className="absolute inset-0 grid-lines opacity-60" />
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-0 size-[420px] rounded-full bg-insca-500/10 blur-[110px]"
+        className="absolute -left-40 top-0 hidden size-[380px] rounded-full bg-insca-500/10 blur-[90px] lg:block"
       />
 
       <div className="wrap relative section-y-sm">

@@ -30,7 +30,7 @@ export function TrustStrip() {
   return (
     <section className="border-b border-hairline section-y-sm">
       <div className="wrap">
-        <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerChildren={0.07}>
+        <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerChildren={0.05}>
           {marks.map(({ icon: Icon, title, body }) => (
             <RevealItem key={title} className="flex gap-4">
               <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-insca-50 text-insca-500">

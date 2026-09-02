@@ -48,7 +48,7 @@ export function FinalCta() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.06}>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <ButtonLink href={level1A.registrationUrl} size="lg">
               Register for INSCA Level 1A
@@ -61,7 +61,7 @@ export function FinalCta() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.16}>
+        <Reveal delay={0.1}>
           <ul className="mx-auto mt-11 flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-3 border-t border-white/12 pt-8 sm:gap-x-5">
             {details.map(({ icon: Icon, value }) => (
               <li

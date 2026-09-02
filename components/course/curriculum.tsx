@@ -4,7 +4,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
 import { m } from "framer-motion";
 import { level1A } from "@/data/course";
-import { EASE } from "@/lib/motion";
+import { EASE, viewportOnce } from "@/lib/motion";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 
 /**
@@ -58,10 +58,10 @@ export function Curriculum() {
             <m.div
               key={block.group}
               data-reveal=""
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0.85, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: EASE, delay: i * 0.06 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.4, ease: EASE, delay: i * 0.04 }}
             >
               <Accordion.Item
                 value={block.group}

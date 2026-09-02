@@ -21,7 +21,7 @@ export function WhyInsca() {
             lead={level1A.notFor}
           />
 
-          <RevealGroup className="mt-9 space-y-3" staggerChildren={0.06}>
+          <RevealGroup className="mt-9 space-y-3" staggerChildren={0.04}>
             {level1A.differentiators.map((point) => (
               <RevealItem
                 key={point}
@@ -62,7 +62,7 @@ export function WhyInsca() {
             covering a subject and reads as a mistake rather than intent.
           */}
           <div className="mt-4 sm:ml-auto sm:mt-5 sm:w-[78%]">
-            <ImageReveal className="aspect-16/10 rounded-2xl" delay={0.08}>
+            <ImageReveal className="aspect-16/10 rounded-2xl" delay={0.05}>
               <Image
                 src="/workshops/analysis/force-curve.webp"
                 alt="Force–velocity data reviewed during an INSCA applied sports science session"

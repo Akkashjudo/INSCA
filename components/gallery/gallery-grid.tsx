@@ -86,9 +86,9 @@ export function GalleryGrid() {
             key={img.src}
             layout
             data-reveal=""
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0.85, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: EASE, delay: Math.min(i * 0.03, 0.3) }}
+            transition={{ duration: 0.35, ease: EASE, delay: Math.min(i * 0.02, 0.18) }}
             className="mb-4 break-inside-avoid"
           >
             <button
