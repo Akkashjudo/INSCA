@@ -3,35 +3,30 @@ import { cn } from "@/lib/utils";
 import { site } from "@/data/site";
 
 /**
- * The INSCA wordmark always sits on a clean white chip and is never
- * recoloured or distorted — carried over from the original brand guidance.
+ * INSCA wordmark.
+ *
+ * The asset is a genuine transparent PNG (the white background baked into the
+ * original artwork was keyed out and the edges un-premultiplied), so the mark
+ * sits directly on whatever surface it is placed on. It must never be wrapped
+ * in a white chip, card, border or shadow.
  */
 export function InscaLogo({
   className,
-  imgClassName,
   priority = false,
 }: {
   className?: string;
-  imgClassName?: string;
   priority?: boolean;
 }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center justify-center rounded-lg bg-white px-2.5 py-1.5",
-        className,
-      )}
-    >
-      <Image
-        src="/brand/insca-logo.png"
-        alt={`${site.shortName} — ${site.name}`}
-        width={1600}
-        height={347}
-        priority={priority}
-        sizes="(max-width: 640px) 168px, 210px"
-        className={cn("h-auto w-[152px] sm:w-[186px]", imgClassName)}
-      />
-    </span>
+    <Image
+      src="/brand/insca-logo.png"
+      alt={`${site.shortName} — ${site.name}`}
+      width={1560}
+      height={314}
+      priority={priority}
+      sizes="(max-width: 640px) 170px, 210px"
+      className={cn("h-auto w-[158px] sm:w-[192px]", className)}
+    />
   );
 }
 
@@ -48,10 +43,7 @@ export function SdatLogo({ className }: { className?: string }) {
   );
 }
 
-/**
- * INSCA × SDAT accreditation lockup. Both marks sit on white so neither
- * logo is shown against a colour it was not designed for.
- */
+/** INSCA × SDAT accreditation lockup. */
 export function AccreditationLockup({
   className,
   tone = "light",
@@ -62,22 +54,18 @@ export function AccreditationLockup({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-4 rounded-2xl border px-4 py-3",
+        "inline-flex items-center gap-4 rounded-xl border px-4 py-3",
         tone === "dark"
-          ? "border-white/15 bg-white/95"
-          : "border-hairline bg-white shadow-[var(--shadow-card)]",
+          ? "border-white/12 bg-white/[0.04]"
+          : "border-hairline bg-white",
         className,
       )}
     >
-      <Image
-        src="/brand/insca-logo.png"
-        alt="INSCA"
-        width={1600}
-        height={347}
-        sizes="140px"
-        className="h-auto w-[118px] sm:w-[140px]"
+      <InscaLogo className="w-[124px] sm:w-[140px]" />
+      <span
+        aria-hidden="true"
+        className={cn("h-8 w-px", tone === "dark" ? "bg-white/15" : "bg-ink-200")}
       />
-      <span aria-hidden="true" className="h-9 w-px bg-ink-200" />
       <SdatLogo className="w-11 sm:w-12" />
     </div>
   );

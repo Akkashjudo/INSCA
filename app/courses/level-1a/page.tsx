@@ -70,18 +70,18 @@ export default function Level1APage() {
           { name: "Level 1A Certification", href: "/courses/level-1a" },
         ]}
       >
-        <p className="mt-5 font-display text-xl font-bold text-insca-500 sm:text-2xl">
+        <p className="mt-6 font-display text-xl font-bold text-insca-600 sm:text-2xl">
           {level1A.positioning}
         </p>
 
-        <div className="mt-9 grid grid-cols-2 gap-x-4 gap-y-5 border-y border-white/12 py-6 sm:grid-cols-4 sm:gap-x-6">
+        <div className="mt-9 grid grid-cols-2 gap-x-4 gap-y-5 border-y border-hairline py-6 sm:grid-cols-4 sm:gap-x-6">
           {meta.map(({ icon: Icon, label, value }) => (
             <div key={label}>
               <span className="flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-ink-400">
                 <Icon className="size-3.5 text-insca-400" aria-hidden="true" />
                 {label}
               </span>
-              <span className="mt-1.5 block font-display text-[0.9rem] font-semibold leading-snug text-white sm:text-[0.95rem]">
+              <span className="mt-1.5 block font-display text-[0.9rem] font-semibold leading-snug text-ink-900 sm:text-[0.95rem]">
                 {value}
               </span>
             </div>
@@ -93,7 +93,7 @@ export default function Level1APage() {
             Apply for Level 1A
             <ArrowGlyph />
           </ButtonLink>
-          <ButtonLink href="#curriculum" variant="ghostLight" size="lg">
+          <ButtonLink href="#curriculum" variant="outline" size="lg">
             View the curriculum
           </ButtonLink>
         </div>

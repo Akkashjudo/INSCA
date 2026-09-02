@@ -39,7 +39,7 @@ export default function WorkshopsPage() {
           { name: "Workshop Gallery", href: "/workshops" },
         ]}
       >
-        <p className="tabular mt-7 text-sm text-ink-400">
+        <p className="tabular mt-7 text-sm text-ink-500">
           {workshopImages.length} photographs from INSCA programmes at TACSS, Chennai
         </p>
       </PageHeader>

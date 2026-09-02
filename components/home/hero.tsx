@@ -1,117 +1,142 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
+import { AccreditationLockup } from "@/components/layout/brand";
 import { level1A } from "@/data/course";
+import { site } from "@/data/site";
 import { EASE } from "@/lib/motion";
 
 /**
- * Homepage hero.
+ * Homepage hero — typography-led, no photograph.
  *
- * Deliberately spare: one badge, an eyebrow, the headline, one sentence, a
- * single line of course facts and two actions. The accreditation lockup and
- * the supporting proof points live in the trust strip immediately below, so
- * the hero does not have to carry them.
+ * The organisation's own name is the artwork: four lines of tight display
+ * type on an off-white ground, with a single red accent. Supporting copy and
+ * a data strip of course facts sit beneath a hairline rule, so the section
+ * reads as an institutional masthead rather than a marketing banner.
  *
- * Layout: on narrow screens the copy is bottom-anchored so the top of the
- * photograph stays clear; from `lg` up it sits left against a left-weighted
- * scrim, leaving the right of the frame close to untouched.
+ * Photography still carries the rest of the page — it simply does not belong
+ * behind the headline, where it fought the type for attention.
  */
 
+const HEADLINE = ["Indian National", "Strength &", "Conditioning", "Association"];
+
 const facts = [
-  level1A.venueShort,
-  level1A.dateLabelShort,
-  `${level1A.durationDays} days`,
-  `${level1A.hoursTotal} hours`,
+  { k: "Venue", v: level1A.venueShort },
+  { k: "Dates", v: level1A.dateLabelShort },
+  { k: "Duration", v: `${level1A.durationDays} days` },
+  { k: "Learning", v: `${level1A.hoursTotal} hours` },
 ];
 
-const step = (i: number) => ({
-  "data-reveal": "",
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: EASE, delay: 0.12 + i * 0.1 },
-});
-
 export function Hero() {
+  const reduce = useReducedMotion();
+
+  /** Line mask: each line rises out of its own clipped box. */
+  const line = (i: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { y: "108%" },
+          animate: { y: "0%" },
+          transition: { duration: 0.85, ease: EASE, delay: 0.15 + i * 0.09 },
+        };
+
+  const fade = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.7, ease: EASE, delay },
+        };
+
   return (
-    <section className="on-dark relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden bg-ink-950 pb-14 pt-28 sm:min-h-[88svh] sm:pb-20 lg:min-h-[calc(100svh-76px)] lg:justify-center lg:py-32">
+    <section className="relative isolate overflow-hidden bg-canvas-2 pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44">
+      {/* Structural grid + a single restrained red bloom */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <Image
-          src="/workshops/practical/overhead-demo.webp"
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          /*
-           * The coaching group and the lifting athlete sit right of centre.
-           * Narrow screens pull the crop toward them; wide screens can show
-           * more of the frame, since the copy only occupies the left.
-           */
-          className="object-cover object-[68%_38%] sm:object-[64%_42%] lg:object-[58%_center]"
-        />
-        <div className="absolute inset-0 scrim-bottom lg:hidden" />
-        <div className="absolute inset-0 hidden lg:block scrim-left" />
+        <div className="absolute inset-0 hero-grid" />
+        <div className="absolute -right-40 top-[45%] size-[560px] rounded-full bg-insca-500/[0.045] blur-[150px]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-hairline" />
       </div>
 
       <div className="wrap relative">
-        <div className="max-w-xl lg:max-w-2xl">
-          <motion.div {...step(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-insca-500/40 bg-insca-500/15 px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
-              <span className="relative flex size-1.5">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-insca-400 opacity-75" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-insca-400" />
-              </span>
-              Limited Slots Available
+        {/* Eyebrow */}
+        <motion.div
+          {...fade(0.05)}
+          data-reveal=""
+          className="flex flex-wrap items-center gap-x-4 gap-y-2"
+        >
+          <span className="t-eyebrow inline-flex items-center gap-2.5 text-insca-500">
+            <span aria-hidden="true" className="h-px w-8 bg-insca-500" />
+            Est. {site.foundingDate}
+          </span>
+          <span className="tabular text-[0.72rem] font-medium uppercase tracking-[0.14em] text-ink-400">
+            Reg. {site.registrationNo}
+          </span>
+        </motion.div>
+
+        {/* The name, as the artwork */}
+        <h1 className="t-hero mt-7 text-ink-900 sm:mt-9">
+          {HEADLINE.map((text, i) => (
+            <span key={text} className="block overflow-hidden pb-[0.06em]">
+              <motion.span {...line(i)} data-reveal="" className="block">
+                {text}
+                {i === HEADLINE.length - 1 ? (
+                  <span className="text-insca-500">.</span>
+                ) : null}
+              </motion.span>
             </span>
+          ))}
+        </h1>
+
+        {/* Statement + actions */}
+        <div className="mt-10 grid gap-8 border-t border-hairline pt-8 sm:mt-12 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
+          <motion.div {...fade(0.62)} data-reveal="" className="max-w-xl">
+            <p className="font-display text-lg font-bold leading-snug text-ink-900 sm:text-xl">
+              {level1A.positioning}
+            </p>
+            <p className="mt-3 text-[0.97rem] leading-relaxed text-ink-500">
+              India&apos;s national professional body for Strength &amp; Conditioning —
+              advancing education, certification and applied sports science.
+            </p>
           </motion.div>
 
-          <motion.p
-            {...step(1)}
-            className="mt-6 font-display text-[0.8rem] font-bold uppercase tracking-[0.22em] text-insca-400"
-          >
-            INSCA &times; SDAT
-          </motion.p>
-
-          <motion.h1 {...step(2)} className="t-display mt-3.5 text-white">
-            Built for High
-            <br />
-            Performance <span className="text-insca-500">Sport.</span>
-          </motion.h1>
-
-          <motion.p {...step(3)} className="t-lead mt-5 max-w-lg text-ink-200">
-            Ten days of evidence-based theory, applied sports science and
-            hands-on coaching.
-          </motion.p>
-
-          <motion.ul
-            {...step(4)}
-            className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.85rem] font-medium text-ink-200 sm:gap-x-4"
-          >
-            {facts.map((fact, i) => (
-              <li key={fact} className="flex items-center gap-3 sm:gap-4">
-                {i > 0 ? (
-                  <span aria-hidden="true" className="size-1 rounded-full bg-insca-500" />
-                ) : null}
-                {fact}
-              </li>
-            ))}
-          </motion.ul>
-
           <motion.div
-            {...step(5)}
-            className="mt-9 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:items-center"
+            {...fade(0.72)}
+            data-reveal=""
+            className="flex flex-col gap-3 min-[420px]:flex-row lg:shrink-0"
           >
-            <ButtonLink href={level1A.registrationUrl} size="lg">
-              Register Now
+            <ButtonLink href="/courses/level-1a" variant="dark" size="lg">
+              Explore Programs
               <ArrowGlyph />
             </ButtonLink>
-            <ButtonLink href="/courses/level-1a" variant="ghostLight" size="lg">
-              Explore the Course
+            <ButtonLink href={level1A.registrationUrl} size="lg">
+              Register Now
             </ButtonLink>
           </motion.div>
         </div>
+
+        {/* Data strip — the current programme, stated as facts */}
+        <motion.dl
+          {...fade(0.82)}
+          data-reveal=""
+          className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-hairline pt-8 sm:grid-cols-4 sm:mt-12"
+        >
+          {facts.map(({ k, v }) => (
+            <div key={k}>
+              <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink-400">
+                {k}
+              </dt>
+              <dd className="tabular mt-1.5 font-display text-[0.95rem] font-bold leading-snug text-ink-900">
+                {v}
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
+
+        <motion.div {...fade(0.9)} data-reveal="" className="mt-10">
+          <AccreditationLockup />
+        </motion.div>
       </div>
     </section>
   );

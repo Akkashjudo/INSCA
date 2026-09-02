@@ -66,13 +66,17 @@ export function Navbar() {
           "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-400",
           "[transition-timing-function:var(--ease-insca)]",
           solid
-            ? "border-b border-hairline bg-white/85 backdrop-blur-xl shadow-[0_1px_0_rgba(15,18,24,0.04)]"
+            ? "border-b border-hairline bg-white/88 backdrop-blur-xl shadow-[0_1px_0_rgba(15,18,24,0.04)]"
             : "border-b border-transparent bg-transparent",
         )}
       >
         <div className="wrap flex h-[68px] items-center justify-between gap-4 sm:h-[76px]">
-          <Link href="/" aria-label={`${"INSCA"} — home`} className="shrink-0">
-            <InscaLogo priority className="shadow-[var(--shadow-card)]" />
+          <Link
+            href="/"
+            aria-label="INSCA — home"
+            className="flex min-h-11 shrink-0 items-center"
+          >
+            <InscaLogo priority />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
@@ -83,23 +87,16 @@ export function Navbar() {
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "relative rounded-full px-3.5 py-2 text-[0.92rem] font-medium transition-colors duration-300",
-                  solid
-                    ? isActive(item.href)
-                      ? "text-insca-600"
-                      : "text-ink-600 hover:text-ink-900"
-                    : isActive(item.href)
-                      ? "text-white"
-                      : "text-white/75 hover:text-white",
+                  isActive(item.href)
+                    ? "text-insca-600"
+                    : "text-ink-600 hover:text-ink-900",
                 )}
               >
                 {item.label}
                 {isActive(item.href) ? (
                   <motion.span
                     layoutId="nav-active"
-                    className={cn(
-                      "absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full",
-                      solid ? "bg-insca-500" : "bg-insca-400",
-                    )}
+                    className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-insca-500"
                     transition={{ duration: 0.35, ease: EASE }}
                   />
                 ) : null}
@@ -124,9 +121,7 @@ export function Navbar() {
               aria-label={open ? "Close menu" : "Open menu"}
               className={cn(
                 "grid size-11 place-items-center rounded-full border transition-colors duration-300 lg:hidden",
-                solid
-                  ? "border-ink-200 text-ink-900 hover:bg-ink-50"
-                  : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
+                "border-ink-200 text-ink-900 hover:bg-ink-50",
               )}
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}

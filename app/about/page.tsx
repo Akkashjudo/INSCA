@@ -44,7 +44,7 @@ export default function AboutPage() {
           { name: "About INSCA", href: "/about" },
         ]}
       >
-        <p className="tabular mt-7 text-sm text-ink-400">
+        <p className="tabular mt-7 text-sm text-ink-500">
           Registration No. {site.registrationNo} · Established {site.foundingDate}
         </p>
       </PageHeader>
