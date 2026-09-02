@@ -72,7 +72,8 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
                 as="li"
                 key={area}
                 className={cn(
-                  "group flex items-baseline gap-5 border-t py-5 transition-colors duration-400 sm:gap-7 sm:py-6",
+                  "group relative flex items-baseline gap-5 border-t py-5 sm:gap-7 sm:py-6",
+                  "transition-colors duration-400 [transition-timing-function:var(--ease-insca)]",
                   dark ? "border-white/10" : "border-hairline",
                   i === level1A.focusAreas.length - 1 &&
                     (dark ? "border-b border-b-white/10" : "border-b border-b-hairline"),
@@ -80,7 +81,9 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
               >
                 <span
                   className={cn(
-                    "tabular shrink-0 font-display text-[0.78rem] font-bold tracking-[0.1em] transition-colors duration-400",
+                    "tabular shrink-0 font-display text-[0.78rem] font-bold tracking-[0.1em]",
+                    "transition-all duration-400 [transition-timing-function:var(--ease-insca)]",
+                    "group-hover:-translate-y-0.5 group-hover:scale-110",
                     dark
                       ? "text-ink-500 group-hover:text-insca-400"
                       : "text-ink-300 group-hover:text-insca-500",
@@ -91,12 +94,23 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
 
                 <h3
                   className={cn(
-                    "font-display text-[1.15rem] font-bold leading-snug transition-transform duration-400 [transition-timing-function:var(--ease-insca)] group-hover:translate-x-1 sm:text-[1.35rem]",
+                    "font-display text-[1.15rem] font-bold leading-snug sm:text-[1.35rem]",
+                    "transition-transform duration-400 [transition-timing-function:var(--ease-insca)]",
+                    "group-hover:translate-x-2",
                     dark ? "text-white" : "text-ink-900",
                   )}
                 >
                   {area}
                 </h3>
+
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-500",
+                    "[transition-timing-function:var(--ease-insca)] group-hover:scale-x-100",
+                    dark ? "bg-insca-400" : "bg-insca-500",
+                  )}
+                />
               </RevealItem>
             ))}
           </RevealGroup>

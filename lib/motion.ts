@@ -12,7 +12,7 @@ import type { Variants, Transition } from "framer-motion";
 export const EASE = [0.22, 0.61, 0.36, 1] as const;
 
 export const transition: Transition = {
-  duration: 0.42,
+  duration: 0.5,
   ease: EASE,
 };
 
@@ -27,13 +27,22 @@ export const transition: Transition = {
  * and the transform still does the visible work of the reveal.
  */
 export const riseIn: Variants = {
-  hidden: { opacity: 0.85, y: 16 },
+  hidden: { opacity: 0.85, y: 26 },
   visible: { opacity: 1, y: 0, transition },
+};
+
+/**
+ * Divider rule that draws itself in. Used between major sections to give
+ * scrolling a sense of rhythm rather than hard cuts.
+ */
+export const drawLine: Variants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 0.7, ease: EASE } },
 };
 
 /** Softer variant for large media, which shouldn't travel as far. */
 export const fadeIn: Variants = {
-  hidden: { opacity: 0.9, y: 10 },
+  hidden: { opacity: 0.88, y: 18 },
   visible: { opacity: 1, y: 0, transition: { ...transition, duration: 0.45 } },
 };
 
@@ -42,12 +51,12 @@ export const fadeIn: Variants = {
  * clip-path reveal used for photography so text and image share one idea.
  */
 export const maskUp: Variants = {
-  hidden: { opacity: 0.85, y: 14, clipPath: "inset(0% 0% 18% 0%)" },
+  hidden: { opacity: 0.85, y: 22, clipPath: "inset(0% 0% 34% 0%)" },
   visible: {
     opacity: 1,
     y: 0,
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.45, ease: EASE },
+    transition: { duration: 0.55, ease: EASE },
   },
 };
 

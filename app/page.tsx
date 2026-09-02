@@ -11,6 +11,7 @@ import { FacultySection } from "@/components/people/faculty-section";
 import { WhyInsca } from "@/components/course/why-insca";
 import { FinalCta } from "@/components/course/final-cta";
 import { CourseSchema } from "@/components/seo/schema";
+import { SectionRule } from "@/components/ui/section-rule";
 
 export const metadata: Metadata = {
   title:
@@ -28,10 +29,12 @@ export default function HomePage() {
       <DisciplineMarquee />
       <TrustStrip />
       <AboutIntro />
+      <div className="wrap"><SectionRule /></div>
       <FeaturedCourse />
       <FocusAreas />
       <WorkshopShowcase />
       <ExperiencePillars />
+      <div className="wrap"><SectionRule /></div>
       <FacultySection />
       <WhyInsca />
       <FinalCta />

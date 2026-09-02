@@ -32,6 +32,8 @@ export function Hero() {
           is expensive to composite and buys nothing on a phone. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute inset-0 hero-grid" />
+        {/* Slow tracking line — desktop only, where there is room for it */}
+        <div className="absolute inset-y-0 left-0 hidden w-px bg-gradient-to-b from-transparent via-insca-500/35 to-transparent hero-sweep lg:block" />
         <div className="absolute -right-40 top-[45%] hidden size-[460px] rounded-full bg-insca-500/[0.05] blur-[110px] lg:block" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-hairline" />
       </div>

@@ -155,7 +155,28 @@
     text-wrap: balance;
   }
 
-  /* Faint technical grid — sports-science measurement feel, not decoration. */
+  /*
+ * A single tracking line that sweeps the hero grid, like a readout sweeping a
+ * chart. Transform-only, 9s, and far too faint to distract — it exists so the
+ * hero is never completely still on a large screen.
+ */
+/*
+ * NOTE: percentage translations resolve against the ELEMENT's own box, and
+ * this rule is 1px wide — a `-40% -> 140%` sweep moved it 1.8px in total,
+ * which was completely invisible. Viewport units are what this needs.
+ */
+@keyframes hero-sweep {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate3d(100vw, 0, 0); opacity: 0; }
+}
+
+.hero-sweep {
+  animation: hero-sweep 9s var(--ease-insca) infinite;
+}
+
+/* Faint technical grid — sports-science measurement feel, not decoration. */
   .hero-grid {
     background-image:
       linear-gradient(to right, rgba(15, 18, 24, 0.032) 1px, transparent 1px),
@@ -313,7 +334,7 @@
  * Total choreography is ~0.55s and every element is in motion within 0.2s.
  */
 @keyframes enter-up {
-  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  from { opacity: 0; transform: translate3d(0, 22px, 0); }
   to   { opacity: 1; transform: none; }
 }
 
@@ -323,7 +344,7 @@
 }
 
 .enter {
-  animation: enter-up 0.42s var(--ease-insca) both;
+  animation: enter-up 0.5s var(--ease-insca) both;
 }
 
 .enter-line {
@@ -339,6 +360,11 @@
 .d-4 { animation-delay: 170ms; }
 .d-5 { animation-delay: 210ms; }
 .d-6 { animation-delay: 250ms; }
+
+@keyframes enter-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 /* Radix accordion — animates to its measured content height */
 @keyframes accordion-down {
@@ -358,7 +384,7 @@
 }
 
 .animate-marquee {
-  animation: insca-marquee var(--marquee-duration, 42s) linear infinite;
+  animation: insca-marquee var(--marquee-duration, 26s) linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -378,12 +404,21 @@
 
   /* Looping and decorative motion — off entirely */
   .animate-marquee,
-  .animate-ping {
+  .animate-ping,
+  .hero-sweep {
     animation: none !important;
   }
 
-  /* Entrance choreography — jump straight to the final state */
-  .enter,
+  /*
+   * Entrance choreography — strip the movement but keep a plain opacity
+   * fade. Opacity is not a vestibular trigger, so this stays within the
+   * spirit of the preference while not leaving the page completely inert.
+   */
+  .enter {
+    animation: enter-fade 0.35s ease both !important;
+    transform: none !important;
+  }
+
   .enter-line {
     animation: none !important;
     opacity: 1 !important;

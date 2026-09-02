@@ -15,9 +15,9 @@ function FacultyCard({ person }: { person: Person }) {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-2xl border border-hairline bg-white p-5 sm:p-6",
-        "transition-all duration-400 [transition-timing-function:var(--ease-insca)]",
-        "hover:-translate-y-1 hover:border-insca-200 hover:shadow-[var(--shadow-lift)]",
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-white p-5 sm:p-6",
+        "transition-[transform,border-color,box-shadow] duration-400 [transition-timing-function:var(--ease-insca)]",
+        "hover:-translate-y-1.5 hover:border-insca-300 hover:shadow-[var(--shadow-lift)]",
       )}
     >
       <div className="flex items-center gap-4">
@@ -28,7 +28,7 @@ function FacultyCard({ person }: { person: Person }) {
               alt={person.name}
               fill
               sizes="72px"
-              className="object-cover"
+              className="object-cover transition-transform duration-500 [transition-timing-function:var(--ease-insca)] group-hover:scale-[1.08]"
               style={{ objectPosition: person.photoPosition ?? "50% 20%" }}
             />
           </span>
@@ -40,6 +40,7 @@ function FacultyCard({ person }: { person: Person }) {
               "bg-gradient-to-br from-ink-900 to-ink-700",
               "font-display text-lg font-bold tracking-tight text-white",
               "ring-1 ring-inset ring-white/10",
+              "transition-colors duration-500 group-hover:from-insca-700 group-hover:to-insca-500",
             )}
           >
             {initialsOf(person.name)}
@@ -47,7 +48,7 @@ function FacultyCard({ person }: { person: Person }) {
         )}
 
         <div className="min-w-0">
-          <h3 className="font-display text-[1.02rem] font-bold leading-tight text-ink-900">
+          <h3 className="font-display text-[1.02rem] font-bold leading-tight text-ink-900 transition-transform duration-400 [transition-timing-function:var(--ease-insca)] group-hover:translate-x-0.5">
             {person.name}
           </h3>
           <p className="mt-1 text-[0.86rem] font-medium leading-snug text-insca-600">
@@ -73,6 +74,12 @@ function FacultyCard({ person }: { person: Person }) {
           ))}
         </ul>
       ) : null}
+
+      {/* Accent rule sweeps across on hover */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-insca-500 transition-transform duration-500 [transition-timing-function:var(--ease-insca)] group-hover:scale-x-100"
+      />
     </article>
   );
 }
