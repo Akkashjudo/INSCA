@@ -45,7 +45,7 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
               the force-velocity chart stays readable. Chosen by rendering the
               actual cover crops at the measured container size (479x360).
             */}
-            <ImageReveal className="aspect-4/3 rounded-2xl">
+            <ImageReveal from="left" className="aspect-4/3 rounded-2xl">
               <Image
                 src="/workshops/analysis/force-curve.webp"
                 alt="Force–velocity data reviewed on screen during an INSCA applied sports science session"

@@ -71,7 +71,7 @@ export function WorkshopShowcase() {
             <div className="space-y-6">
               {sequence.map((img, i) => (
                 <figure key={img.src} className="group relative overflow-hidden rounded-2xl">
-                  <ImageReveal className="aspect-16/10">
+                  <ImageReveal from="left" className="aspect-16/10">
                       <Image
                         src={img.src}
                         alt={img.alt}

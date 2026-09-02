@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { StickyCta } from "@/components/layout/sticky-cta";
 import { MotionProvider } from "@/components/motion-provider";
+import { PageReveal } from "@/components/ui/page-reveal";
 import { OrganizationSchema } from "@/components/seo/schema";
 import { site } from "@/data/site";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
 
         <OrganizationSchema />
         <MotionProvider>
+          <PageReveal />
           <Navbar />
           <main id="main">{children}</main>
           <Footer />

@@ -53,7 +53,7 @@ export function AboutIntro() {
 
         <div>
           <figure className="relative">
-            <ImageReveal className="aspect-4/3 rounded-2xl">
+            <ImageReveal from="right" className="aspect-4/3 rounded-2xl">
               <Image
                 src="/workshops/cohort/group-photo.webp"
                 alt="The full INSCA cohort at the Tamil Nadu Centre for Sports Science, Chennai"

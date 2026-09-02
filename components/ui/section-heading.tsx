@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { RevealGroup, RevealItem } from "./reveal";
-import { maskUp, riseIn } from "@/lib/motion";
+import { maskUp, riseIn, slideIn } from "@/lib/motion";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -12,6 +12,8 @@ type SectionHeadingProps = {
   className?: string;
   /** Renders as h3 inside sections that already own the h2. */
   as?: "h2" | "h3";
+  /** Direction the eyebrow and lead travel in from. */
+  from?: "left" | "right" | "up";
 };
 
 export function SectionHeading({
@@ -22,6 +24,7 @@ export function SectionHeading({
   tone = "light",
   className,
   as: Tag = "h2",
+  from = "up",
 }: SectionHeadingProps) {
   const dark = tone === "dark";
 
@@ -37,7 +40,7 @@ export function SectionHeading({
       {eyebrow ? (
         <RevealItem
           as="span"
-          variants={riseIn}
+          variants={from === "up" ? riseIn : slideIn(from)}
           className={cn(
             "t-eyebrow inline-flex items-center gap-2.5",
             dark ? "text-insca-400" : "text-insca-500",
@@ -64,7 +67,7 @@ export function SectionHeading({
       {lead ? (
         <RevealItem
           as="p"
-          variants={riseIn}
+          variants={from === "up" ? riseIn : slideIn(from)}
           className={cn("t-lead mt-5", dark ? "text-ink-300" : "text-ink-500")}
         >
           {lead}

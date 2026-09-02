@@ -86,13 +86,18 @@ export function Navbar() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-[0.92rem] font-medium transition-colors duration-300",
+                  "group/nav relative rounded-full px-3.5 py-2 text-[0.92rem] font-medium transition-colors duration-300",
                   isActive(item.href)
                     ? "text-insca-600"
                     : "text-ink-600 hover:text-ink-900",
                 )}
               >
                 {item.label}
+                {/*
+                  Two rules: the active state is persistent, while the hover
+                  rule grows from the left and leaves toward the right rather
+                  than retracting the way it came.
+                */}
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -101,6 +106,16 @@ export function Navbar() {
                     isActive(item.href) ? "scale-x-100" : "scale-x-0",
                   )}
                 />
+                {!isActive(item.href) ? (
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-insca-500/70",
+                      "transition-transform duration-400 [transition-timing-function:var(--ease-insca)]",
+                      "group-hover/nav:origin-left group-hover/nav:scale-x-100",
+                    )}
+                  />
+                ) : null}
               </Link>
             ))}
           </nav>

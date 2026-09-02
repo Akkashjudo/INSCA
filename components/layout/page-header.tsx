@@ -119,7 +119,7 @@ export function PageHeader({
       {/* The photograph, shown plainly and in full */}
       {image ? (
         <div className="wrap relative pb-14 sm:pb-20">
-          <ImageReveal className="aspect-16/10 rounded-2xl sm:aspect-[21/9]">
+          <ImageReveal immediate from="up" delay={0.15} className="aspect-16/10 rounded-2xl sm:aspect-[21/9]">
             <Image
               src={image}
               alt={imageAlt}

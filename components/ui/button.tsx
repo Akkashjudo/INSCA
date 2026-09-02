@@ -10,6 +10,12 @@ const button = cva(
     "transition-[background-color,color,border-color,box-shadow,transform] duration-300",
     "[transition-timing-function:var(--ease-insca)]",
     "active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
+    // Layered sweep: a tint wipes left -> right behind the label on hover
+    "isolate overflow-hidden",
+    "before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0",
+    "before:transition-transform before:duration-500",
+    "before:[transition-timing-function:var(--ease-insca)] hover:before:scale-x-100",
+    "hover:scale-[1.015]",
     // Comfortable touch target on every variant
     "min-h-11",
   ],
@@ -17,13 +23,13 @@ const button = cva(
     variants: {
       variant: {
         primary:
-          "bg-insca-500 text-white shadow-[var(--shadow-red)] hover:bg-insca-600 hover:shadow-[0_14px_38px_rgba(224,31,38,0.36)]",
-        dark: "bg-ink-900 text-white hover:bg-ink-800",
+          "bg-insca-500 text-white shadow-[var(--shadow-red)] before:bg-white/20 hover:bg-insca-600 hover:shadow-[0_14px_38px_rgba(224,31,38,0.36)]",
+        dark: "bg-ink-900 text-white before:bg-white/18 hover:bg-ink-800",
         outline:
-          "border border-ink-200 text-ink-900 bg-white/60 hover:border-ink-900 hover:bg-white",
+          "border border-ink-200 text-ink-900 bg-white/60 before:bg-ink-900/[0.07] hover:border-ink-900 hover:bg-white",
         ghostLight:
-          "border border-white/25 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15 hover:border-white/50",
-        subtle: "bg-ink-50 text-ink-900 hover:bg-ink-100",
+          "border border-white/25 text-white bg-white/5 backdrop-blur-sm before:bg-white/15 hover:bg-white/15 hover:border-white/50",
+        subtle: "bg-ink-50 text-ink-900 before:bg-ink-900/[0.06] hover:bg-ink-100",
       },
       size: {
         sm: "text-[0.85rem] px-4 py-2.5",

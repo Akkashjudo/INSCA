@@ -9,7 +9,32 @@ import type { Variants, Transition } from "framer-motion";
  * needs different behaviour.
  */
 
+/* ---------------------------------------------------------------------
+ * MOTION TOKENS
+ * One vocabulary for the whole site. Durations and easings are named, not
+ * sprinkled as literals, so the motion reads as a single system.
+ * ------------------------------------------------------------------- */
+
+/** General purpose settle. */
 export const EASE = [0.22, 0.61, 0.36, 1] as const;
+/** Sharp arrival — used for masked text and image reveals. */
+export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
+/** Symmetrical sweep — used for wipes and panel transitions. */
+export const EASE_IN_OUT = [0.76, 0, 0.24, 1] as const;
+
+export const DUR = {
+  fast: 0.3,
+  normal: 0.55,
+  reveal: 0.75,
+} as const;
+
+export const STAGGER = {
+  fast: 0.05,
+  line: 0.07,
+} as const;
+
+/** Direction a reveal travels from. */
+export type Direction = "left" | "right" | "up";
 
 export const transition: Transition = {
   duration: 0.5,
@@ -37,7 +62,35 @@ export const riseIn: Variants = {
  */
 export const drawLine: Variants = {
   hidden: { scaleX: 0 },
-  visible: { scaleX: 1, transition: { duration: 0.7, ease: EASE } },
+  visible: { scaleX: 1, transition: { duration: DUR.reveal, ease: EASE_IN_OUT } },
+};
+
+/**
+ * Directional entrance. Sections choose a direction from their own
+ * composition — content on the left enters from the left — so the page reads
+ * as one choreographed movement rather than everything drifting upward.
+ */
+export const slideIn = (dir: Direction = "left"): Variants => ({
+  hidden: {
+    opacity: 0.85,
+    x: dir === "left" ? -46 : dir === "right" ? 46 : 0,
+    y: dir === "up" ? 26 : 0,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: { duration: DUR.normal, ease: EASE_OUT_EXPO },
+  },
+});
+
+/**
+ * Masked line reveal: the line sits below its own clipped box and rises.
+ * The wrapper supplies `overflow: hidden`.
+ */
+export const maskLine: Variants = {
+  hidden: { y: "110%" },
+  visible: { y: "0%", transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
 };
 
 /** Softer variant for large media, which shouldn't travel as far. */

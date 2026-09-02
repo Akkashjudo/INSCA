@@ -1,4 +1,5 @@
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
+import { MaskedText } from "@/components/ui/masked-text";
 import { AccreditationLockup } from "@/components/layout/brand";
 import { level1A } from "@/data/course";
 import { site } from "@/data/site";
@@ -49,18 +50,22 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="t-hero mt-7 text-ink-900 sm:mt-9">
-          {HEADLINE.map((text, i) => (
-            <span key={text} className="block overflow-hidden pb-[0.06em]">
-              <span className={`enter-line d-${i + 1}`}>
+        <MaskedText
+          as="h1"
+          immediate
+          delay={0.12}
+          className="t-hero mt-7 text-ink-900 sm:mt-9"
+          lines={HEADLINE.map((text, i) =>
+            i === HEADLINE.length - 1 ? (
+              <>
                 {text}
-                {i === HEADLINE.length - 1 ? (
-                  <span className="text-insca-500">.</span>
-                ) : null}
-              </span>
-            </span>
-          ))}
-        </h1>
+                <span className="text-insca-500">.</span>
+              </>
+            ) : (
+              text
+            ),
+          )}
+        />
 
         <div className="mt-10 grid gap-8 border-t border-hairline pt-8 sm:mt-12 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
           <div className="enter d-5 max-w-xl">

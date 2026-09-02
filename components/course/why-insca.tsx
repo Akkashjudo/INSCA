@@ -46,7 +46,7 @@ export function WhyInsca() {
             badly composed. They now keep a landscape ratio with a focal point
             chosen per photograph, and simply stack on narrow screens.
           */}
-          <ImageReveal className="aspect-16/10 rounded-2xl">
+          <ImageReveal from="right" className="aspect-16/10 rounded-2xl">
             <Image
               src="/workshops/practical/sprint-start.webp"
               alt="Sprint start position demonstrated in front of INSCA participants"
@@ -62,7 +62,7 @@ export function WhyInsca() {
             covering a subject and reads as a mistake rather than intent.
           */}
           <div className="mt-4 sm:ml-auto sm:mt-5 sm:w-[78%]">
-            <ImageReveal className="aspect-16/10 rounded-2xl" delay={0.05}>
+            <ImageReveal from="right" className="aspect-16/10 rounded-2xl" delay={0.05}>
               <Image
                 src="/workshops/analysis/force-curve.webp"
                 alt="Force–velocity data reviewed during an INSCA applied sports science session"

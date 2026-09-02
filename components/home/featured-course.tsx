@@ -30,7 +30,7 @@ export function FeaturedCourse() {
           {/* Media */}
           <div className="order-2 lg:order-1">
             <div className="relative">
-              <ImageReveal className="aspect-[4/3] rounded-2xl sm:aspect-[16/11]">
+              <ImageReveal from="left" className="aspect-[4/3] rounded-2xl sm:aspect-[16/11]">
                 <Image
                   src="/workshops/strength/barbell-hinge.webp"
                   alt="INSCA participants practising the barbell hip hinge on the indoor track at TACSS"

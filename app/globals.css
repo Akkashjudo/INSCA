@@ -322,6 +322,45 @@
   }
 }
 
+/* =====================================================================
+ * PAGE WIPE
+ *
+ * Two panels cover the viewport and sweep off to the right, uncovering a
+ * page that is ALREADY rendered underneath. Red leads, charcoal follows
+ * 0.1s behind, so the exit reads as layered rather than as one flat block.
+ *
+ * Driven entirely by CSS with `animation-fill-mode: forwards`. That matters:
+ * if the JS bundle never arrives the panels still sweep away, so the wipe can
+ * never strand the page behind a cover. Under reduced motion they are removed
+ * outright rather than animated.
+ * ===================================================================== */
+@keyframes page-wipe {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(101%, 0, 0); }
+}
+
+.wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  will-change: transform;
+  animation: page-wipe 0.62s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.wipe-red    { background: var(--color-insca-500); z-index: 92; }
+.wipe-ink    { background: var(--color-ink-950);   z-index: 91; animation-delay: 0.1s; }
+
+/* A thin bright edge trailing the sweep reads as a deliberate wipe. */
+.wipe-ink::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: -2px;
+  width: 2px;
+  background: var(--color-insca-500);
+}
+
 /*
  * ABOVE-THE-FOLD ENTRANCE
  *
@@ -407,6 +446,11 @@
   .animate-ping,
   .hero-sweep {
     animation: none !important;
+  }
+
+  /* No wipe at all — remove the panels rather than sliding them */
+  .wipe {
+    display: none !important;
   }
 
   /*
