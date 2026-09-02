@@ -362,26 +362,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-
-  .animate-marquee {
-    animation: none;
-  }
+  html { scroll-behavior: auto !important; }
 
   /*
-   * Scroll reveals start at opacity 0 and are animated in by framer-motion.
-   * When motion is reduced that animation is suppressed, which would leave
-   * the content permanently invisible — so force every reveal to its final
-   * state. `!important` is required here: it is the one case that outranks
-   * the inline styles framer-motion writes. Scoped to [data-reveal] so it
-   * never touches hover transforms elsewhere.
+   * REDUCED MOTION POLICY
+   *
+   * Remove movement, not feedback. The previous blanket rule zeroed every
+   * transition on every element, which also killed hover and focus states and
+   * left the interface feeling dead rather than calm. WCAG 2.3.3 is about
+   * motion; colour and opacity changes are not the problem.
+   *
+   * So: looping and entrance animation is switched off, transform-based
+   * transitions are dropped, and short colour/opacity feedback is kept.
    */
-  [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
+
+  /* Looping and decorative motion — off entirely */
+  .animate-marquee,
+  .animate-ping {
+    animation: none !important;
   }
 
+  /* Entrance choreography — jump straight to the final state */
   .enter,
   .enter-line {
     animation: none !important;
@@ -389,11 +390,28 @@
     transform: none !important;
   }
 
+  /*
+   * Scroll reveals are animated in by framer-motion, which will not run them
+   * here — force them to their final state so content is never left hidden.
+   * `!important` is required: it is the one case that outranks inline styles.
+   */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  /*
+   * Keep hover/focus feedback alive, but only for properties that do not
+   * move anything. Anything transform-based simply stops transitioning.
+   */
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    transition-property: color, background-color, border-color, outline-color,
+      fill, stroke, opacity, box-shadow !important;
+    transition-duration: 180ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
+

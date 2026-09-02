@@ -33,13 +33,25 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.82fr_1fr] lg:items-start lg:gap-16">
           {/* Photography, shown plainly */}
           <div className="lg:sticky lg:top-28">
-            <ImageReveal className="aspect-4/3 rounded-2xl lg:aspect-3/4">
+            {/*
+              The source is 1600x801 (ratio 2.00). A portrait `lg:aspect-3/4`
+              crop cut the instructor's head off on desktop, because a portrait
+              container forces a VERTICAL crop of a landscape frame.
+
+              At 4/3 the crop is horizontal only — full height is retained, so
+              the head cannot be clipped at any width. 33% of the width is
+              dropped; `object-position: 15%` spends that on the right of the
+              frame, leaving him with headroom and clear of the left edge while
+              the force-velocity chart stays readable. Chosen by rendering the
+              actual cover crops at the measured container size (479x360).
+            */}
+            <ImageReveal className="aspect-4/3 rounded-2xl">
               <Image
                 src="/workshops/analysis/force-curve.webp"
                 alt="Force–velocity data reviewed on screen during an INSCA applied sports science session"
                 fill
-                sizes="(max-width: 1024px) 100vw, 38vw"
-                className="object-cover object-[52%_center]"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-[15%_center]"
               />
             </ImageReveal>
             <p
