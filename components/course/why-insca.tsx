@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { SplitReveal } from "@/components/ui/split-reveal";
 import { ImageReveal } from "@/components/ui/image-reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { level1A } from "@/data/course";
@@ -9,7 +10,7 @@ export function WhyInsca() {
   return (
     <section className="section-y">
       <div className="wrap grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-16">
-        <div>
+        <SplitReveal from="left">
           <SectionHeading
             eyebrow="Why INSCA Level 1A?"
             title={
@@ -36,9 +37,9 @@ export function WhyInsca() {
               </RevealItem>
             ))}
           </RevealGroup>
-        </div>
+        </SplitReveal>
 
-        <div>
+        <SplitReveal from="right" delay={0.06}>
           {/*
             Both photographs are 1600x801 (ratio 2.00). They previously sat in
             aspect-3/4 portrait frames, which threw away ~62% of each frame and
@@ -83,7 +84,7 @@ export function WhyInsca() {
               Development Authority of Tamil Nadu.
             </p>
           </div>
-        </div>
+        </SplitReveal>
       </div>
     </section>
   );

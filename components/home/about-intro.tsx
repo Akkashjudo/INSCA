@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { SplitReveal } from "@/components/ui/split-reveal";
 import { ImageReveal } from "@/components/ui/image-reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { aboutParagraphs, site } from "@/data/site";
@@ -21,7 +22,7 @@ export function AboutIntro() {
   return (
     <section className="section-y">
       <div className="wrap grid gap-14 lg:grid-cols-[1fr_0.92fr] lg:items-center lg:gap-20">
-        <div>
+        <SplitReveal from="left">
           <SectionHeading
             eyebrow="Who we are"
             title={
@@ -49,9 +50,9 @@ export function AboutIntro() {
               </span>
             </div>
           </Reveal>
-        </div>
+        </SplitReveal>
 
-        <div>
+        <SplitReveal from="right" delay={0.06}>
           <figure className="relative">
             <ImageReveal from="right" className="aspect-4/3 rounded-2xl">
               <Image
@@ -98,7 +99,7 @@ export function AboutIntro() {
               </RevealItem>
             ))}
           </RevealGroup>
-        </div>
+        </SplitReveal>
       </div>
     </section>
   );

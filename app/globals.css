@@ -323,6 +323,59 @@
 }
 
 /* =====================================================================
+ * PRELOADER
+ *
+ * Shown once per session on first load. The mark settles, a red rule draws
+ * beneath it, then the panel wipes away — about 1.05s end to end, and only
+ * because there is something worth showing, not to manufacture a wait.
+ *
+ * Entirely CSS with fill-mode: forwards, so it clears itself even if the
+ * bundle never arrives. The page is fully rendered underneath throughout.
+ * ===================================================================== */
+@keyframes loader-mark {
+  from { opacity: 0; transform: scale(0.965) translate3d(0, 6px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes loader-rule {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes loader-exit {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(101%, 0, 0); }
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  background: var(--color-canvas);
+  pointer-events: none;
+  animation: loader-exit 0.62s cubic-bezier(0.76, 0, 0.24, 1) 0.62s forwards;
+}
+
+.loader-inner { animation: loader-mark 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.loader-rule {
+  transform-origin: left center;
+  animation: loader-rule 0.42s cubic-bezier(0.76, 0, 0.24, 1) 0.26s both;
+}
+
+/* The charcoal layer trails the white one, so the exit reads as layered. */
+.loader-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 94;
+  background: var(--color-ink-950);
+  pointer-events: none;
+  animation: loader-exit 0.62s cubic-bezier(0.76, 0, 0.24, 1) 0.72s forwards;
+}
+
+/* =====================================================================
  * PAGE WIPE
  *
  * Two panels cover the viewport and sweep off to the right, uncovering a
@@ -448,8 +501,10 @@
     animation: none !important;
   }
 
-  /* No wipe at all — remove the panels rather than sliding them */
-  .wipe {
+  /* No wipe or preloader at all — remove them rather than sliding them */
+  .wipe,
+  .loader,
+  .loader-trail {
     display: none !important;
   }
 

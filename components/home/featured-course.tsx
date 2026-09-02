@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { SplitReveal } from "@/components/ui/split-reveal";
 import { ImageReveal } from "@/components/ui/image-reveal";
 import { level1A, formatFee } from "@/data/course";
 
@@ -28,7 +29,7 @@ export function FeaturedCourse() {
       <div className="wrap relative">
         <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16">
           {/* Media */}
-          <div className="order-2 lg:order-1">
+          <SplitReveal from="left" className="order-2 lg:order-1">
             <div className="relative">
               <ImageReveal from="left" className="aspect-[4/3] rounded-2xl sm:aspect-[16/11]">
                 <Image
@@ -58,10 +59,10 @@ export function FeaturedCourse() {
                 Current Programme
               </span>
             </div>
-          </div>
+          </SplitReveal>
 
           {/* Body */}
-          <div className="order-1 lg:order-2">
+          <SplitReveal from="right" delay={0.06} className="order-1 lg:order-2">
             <Reveal>
               <span className="t-eyebrow inline-flex items-center gap-2.5 text-insca-400">
                 <span aria-hidden="true" className="h-px w-6 rounded bg-insca-400" />
@@ -114,7 +115,7 @@ export function FeaturedCourse() {
                 </ButtonLink>
               </div>
             </Reveal>
-          </div>
+          </SplitReveal>
         </div>
       </div>
     </section>
