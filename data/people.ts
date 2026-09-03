@@ -21,7 +21,7 @@ export type Person = {
 /**
  * Level 1A teaching faculty, in the order given by the official brochure.
  * Dr. Saju Joseph is the only faculty member with a genuine INSCA
- * photograph on file (he is also INSCA's Secretary).
+ * photograph on file (he is also one of INSCA's Founders, and its Secretary).
  */
 export const level1AFaculty: Person[] = [
   {
@@ -29,7 +29,7 @@ export const level1AFaculty: Person[] = [
     role: "High Performance Manager",
     org: "SDAT, TACSS",
     photo: "/people/saju-joseph.webp",
-    photoPosition: "50% 22%",
+    photoPosition: "50% 30%",
   },
   {
     name: "Mrs. Devi Meena",
@@ -88,13 +88,13 @@ export const leadership = [
   },
   {
     name: "Dr. Saju Joseph",
-    role: "Secretary",
+    role: "Founder & Secretary",
     org: "INSCA · High Performance Manager, SDAT TACSS",
     photo: "/people/saju-joseph.webp",
-    photoPosition: "50% 22%",
+    photoPosition: "50% 30%",
     bio: "Committed to strengthening the professional ecosystem of Strength & Conditioning by promoting education, research, certification and evidence-based performance practices.",
-    phone: "+91 98864 62264",
-    phoneHref: "tel:+919886462264",
+    phone: "+91 82777 13616",
+    phoneHref: "tel:+918277713616",
     email: "saju@insca.in",
   },
 ] as const;

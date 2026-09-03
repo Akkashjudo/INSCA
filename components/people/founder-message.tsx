@@ -12,7 +12,7 @@ export function FounderMessage() {
     <section id="founder" className="scroll-mt-24 section-y">
       <div className="wrap">
         <SectionHeading
-          eyebrow="Founder's message"
+          eyebrow="President's message"
           title={
             <>
               A vision rooted in{" "}

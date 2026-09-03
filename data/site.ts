@@ -96,7 +96,8 @@ export const missionPoints = [
   },
 ] as const;
 
-/** Founder's message — preserved verbatim from the original INSCA site. */
+/** Dr. Arjun's words, preserved verbatim from the original INSCA site.
+ *  Rendered on /about under the heading "President's message". */
 export const foundersMessage = {
   pullQuote:
     "It has always been our dream and mission to restore India's historic leadership in the fields of health, physical excellence, and human performance.",
