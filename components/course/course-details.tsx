@@ -15,15 +15,20 @@ const rows = [
     sub: `${venue.building}, SDAT, ${venue.street}, ${venue.locality} – ${venue.postalCode}`,
   },
   { k: "Dates", v: level1A.dateLabel },
-  { k: "Duration", v: `${level1A.durationLabel} · ${level1A.hoursPerDay} hours per day` },
+  { k: "Time", v: level1A.timeLabel },
+  { k: "Duration", v: level1A.durationLabel },
   { k: "Learning duration", v: `${level1A.hoursTotal} hours` },
-  { k: "Registration", v: level1A.admission, sub: "Limited slots" },
+  {
+    k: "Registration",
+    v: level1A.admission,
+    sub: `Limited slots · Early Bird closes ${level1A.earlyBirdDeadlineLabel}`,
+  },
   { k: "Certification", v: level1A.certification },
 ];
 
 export function CourseDetails() {
   return (
-    <section id="details" className="scroll-mt-24 bg-canvas-2 section-y">
+    <section id="details" className="bg-canvas-2 section-y">
       <div className="wrap">
         <SectionHeading
           eyebrow="Course details"
@@ -82,7 +87,7 @@ export function CourseDetails() {
                   )}
                 >
                   {fee.featured ? (
-                    <span className="absolute -top-2.5 left-6 rounded-full bg-insca-500 px-3 py-1 font-display text-[0.65rem] font-bold uppercase tracking-[0.13em] text-white">
+                    <span className="absolute -top-2.5 left-6 rounded-full bg-insca-500 px-3 py-1 font-display text-[0.72rem] font-bold uppercase tracking-[0.13em] text-white">
                       Save {formatFee(level1A.fees[1].amount - fee.amount)}
                     </span>
                   ) : null}

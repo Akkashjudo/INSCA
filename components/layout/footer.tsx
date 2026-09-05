@@ -27,7 +27,18 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Identity */}
           <div>
-            <InscaLogo />
+            {/*
+              The mark is a route home wherever it appears — the navbar's and
+              this one behave identically, so a reader who reaches the bottom
+              of a long page always has the logo as a way back.
+            */}
+            <Link
+              href="/"
+              aria-label={`${site.shortName} — home`}
+              className="inline-flex min-h-11 items-center"
+            >
+              <InscaLogo />
+            </Link>
             <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed">
               Advancing Strength &amp; Conditioning through education, research,
               certification, innovation and professional excellence.

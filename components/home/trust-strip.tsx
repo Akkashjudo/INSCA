@@ -28,8 +28,21 @@ const marks = [
 
 export function TrustStrip() {
   return (
-    <section className="border-b border-hairline section-y-sm">
+    <section
+      aria-labelledby="trust-heading"
+      className="border-b border-hairline section-y-sm"
+    >
       <div className="wrap">
+        {/*
+          The four marks below are <h3>, which left the homepage outline
+          jumping straight from the h1 to h3 — this section is shown without
+          a heading by design, so it gets one for the outline and for screen
+          readers rather than a visible one being invented.
+        */}
+        <h2 id="trust-heading" className="sr-only">
+          Accreditation and standards
+        </h2>
+
         <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" staggerChildren={0.05}>
           {marks.map(({ icon: Icon, title, body }) => (
             <RevealItem key={title} className="flex gap-4">

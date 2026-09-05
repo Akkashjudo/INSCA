@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { ImageReveal } from "@/components/ui/image-reveal";
-import { imagesIn, type WorkshopImage } from "@/data/gallery";
+import { imageBySrc, type WorkshopImage } from "@/data/gallery";
 
 /**
  * "See INSCA in Action".
@@ -15,13 +15,28 @@ import { imagesIn, type WorkshopImage } from "@/data/gallery";
  * Mobile: the same photographs become a scroll-snapped horizontal track.
  */
 
+/**
+ * Six photographs, chosen by hand rather than sliced off the front of each
+ * category — the slices kept returning the same frames the featured course
+ * block, the focus-area panel and the experience pillars were already using,
+ * so a reader scrolling the homepage met the same barbell hinge three times.
+ *
+ * Every image here appears exactly ONCE outside the gallery catalogue. Before
+ * swapping one in, check it is not already placed elsewhere on the home or
+ * Level 1A page.
+ */
 const sequence: WorkshopImage[] = [
-  ...imagesIn("practical").slice(0, 2),
-  ...imagesIn("testing").slice(0, 1),
-  ...imagesIn("strength").slice(0, 1),
-  ...imagesIn("analysis").slice(0, 1),
-  ...imagesIn("cpr").slice(0, 1),
-];
+  "/workshops/practical/overhead-demo.webp",
+  "/workshops/testing/sprint-lineup.webp",
+  "/workshops/strength/barbell-coaching.webp",
+  "/workshops/analysis/app-session.webp",
+  "/workshops/cpr/practical.webp",
+  "/workshops/practical/balance-demo.webp",
+].map((src) => {
+  const img = imageBySrc(src);
+  if (!img) throw new Error(`Unknown workshop image: ${src}`);
+  return img;
+});
 
 export function WorkshopShowcase() {
   return (
@@ -51,10 +66,8 @@ export function WorkshopShowcase() {
                 environments.
               </p>
 
-              <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-ink-400">
-                Every photograph here is from a real INSCA programme at the Tamil Nadu
-                Centre for Sports Science — the same facility, faculty and equipment
-                Level 1A participants will work with.
+              <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-ink-400">
+                Every photograph is from a real INSCA programme at TACSS, Chennai.
               </p>
 
               <div className="mt-8 hidden lg:block">

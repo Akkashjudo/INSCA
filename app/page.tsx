@@ -14,10 +14,11 @@ import { CourseSchema } from "@/components/seo/schema";
 import { SectionRule } from "@/components/ui/section-rule";
 
 export const metadata: Metadata = {
-  title:
-    "INSCA — Indian National Strength & Conditioning Association | Level 1A Certification",
+  /* Kept inside what Google actually renders: ~60 chars of title, ~155 of
+     description. The longer form truncated mid-phrase in results. */
+  title: "INSCA — Indian National Strength & Conditioning Association",
   description:
-    "INSCA is India's national professional body for Strength & Conditioning. Join the INSCA + SDAT Level 1A Certification in Chennai — a 10-day, 80-hour high-performance course featuring practical coaching, athlete monitoring, Olympic lifting and applied sports science.",
+    "India's national professional body for Strength & Conditioning. The INSCA + SDAT Level 1A Certification in Chennai — 10 days, 80 hours, practical and applied.",
   alternates: { canonical: "/" },
 };
 
@@ -30,8 +31,18 @@ export default function HomePage() {
       <TrustStrip />
       <AboutIntro />
       <div className="wrap"><SectionRule /></div>
+      {/*
+        SECTION RHYTHM
+        The homepage reads as four chapters rather than alternating light and
+        dark section by section: an off-white opening (hero → about), one
+        continuous dark block for the programme itself, a light block for the
+        people and the proof, then the dark close of the CTA into the footer.
+        <FocusAreas> is rendered dark here purely so the programme chapter
+        stays unbroken; on /courses/level-1a it keeps its light tone, where
+        the surrounding rhythm is different.
+      */}
       <FeaturedCourse />
-      <FocusAreas />
+      <FocusAreas tone="dark" />
       <WorkshopShowcase />
       <ExperiencePillars />
       <div className="wrap"><SectionRule /></div>

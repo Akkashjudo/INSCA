@@ -44,6 +44,16 @@ export const level1A = {
   hoursTotal: 80,
   hoursPerDay: 8,
   durationLabel: "10 Days Intensive Immersion",
+  /**
+   * Shown under "Time" in the registration panel.
+   *
+   * The official brochure specifies 8 hours per day across 10 days but gives
+   * no clock times. Nothing else in the supplied material states a daily
+   * start/finish, so none is invented here. When SDAT confirms the daily
+   * schedule, replace this string (e.g. "9:00 AM – 5:00 PM daily") and it
+   * updates the header panel, the details table and the contact page at once.
+   */
+  timeLabel: "Full-day sessions · 8 hours per day",
   admission: "First Come – First Serve",
   certification: "INSCA + SDAT Accredited Certification",
 
@@ -162,15 +172,25 @@ export const level1A = {
   ],
 
   // ---- Core focus areas ------------------------------------------------
+  /**
+   * "What you'll learn" — the taught areas of the certification.
+   * Rendered by <FocusAreas> and also published as `teaches` in the Course
+   * JSON-LD, so the count in the section heading is derived, never typed.
+   */
   focusAreas: [
     "Athlete Monitoring",
     "Force Production & Orientation",
+    "Biomechanics of Strength Training",
+    "Mechanics of Exercise",
     "Speed Training",
     "Plyometric Training",
     "Olympic Lifting",
+    "Psychology of Strength Training",
+    "Recovery Massage",
+    "Rehab & First Aid",
     "Return to Sport",
     "Testing & Monitoring",
-    "Applied Sports Science",
+    "CPR Certification",
     "Evidence-Based Coaching",
   ],
 

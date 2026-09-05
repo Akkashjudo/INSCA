@@ -8,10 +8,23 @@ import { cn } from "@/lib/utils";
 /**
  * "What you'll learn".
  *
- * A typographic index rather than a grid of identical cards — nine numbered
- * rules paired with one large photograph. The surrounding sections already
- * carry cards, so this one is deliberately type-led to break the rhythm.
+ * A typographic index rather than a grid of identical cards — numbered rules
+ * paired with one large photograph. The surrounding sections already carry
+ * cards, so this one is deliberately type-led to break the rhythm.
+ *
+ * The count in the heading is DERIVED from the data. Adding or removing a
+ * taught area updates the sentence, the index and the Course JSON-LD
+ * together, so they cannot drift apart.
  */
+const COUNT_WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+  "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
+  "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty",
+] as const;
+
+const areaCount =
+  COUNT_WORDS[level1A.focusAreas.length] ?? String(level1A.focusAreas.length);
+
 export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
   const dark = tone === "dark";
 
@@ -23,7 +36,7 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
           tone={tone}
           title={
             <>
-              Nine core areas of{" "}
+              {areaCount} core areas of{" "}
               <Accent tone={tone}>high-performance practice</Accent>
             </>
           }
@@ -60,8 +73,8 @@ export function FocusAreas({ tone = "light" }: { tone?: "light" | "dark" }) {
                 dark ? "text-ink-400" : "text-ink-400",
               )}
             >
-              Applied sports science sessions at the Tamil Nadu Centre for Sports
-              Science.
+              Force–velocity data reviewed with the cohort at the Tamil Nadu
+              Centre for Sports Science.
             </p>
           </div>
 

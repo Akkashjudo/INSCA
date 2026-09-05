@@ -82,11 +82,11 @@ function Pillar({ title, body, image, position = "center", lead = false }: Pilla
 
 /** Focal points chosen per photograph so subjects stay in frame. */
 const FOCUS: Record<string, string> = {
-  "/workshops/strength/barbell-hinge.webp": "52% 42%",
-  "/workshops/testing/sprint-lineup.webp": "50% 38%",
+  "/workshops/strength/gym-briefing.webp": "50% 40%",
+  "/workshops/testing/hurdle-drills.webp": "50% 42%",
   "/workshops/practical/box-jump.webp": "46% 40%",
   "/workshops/classroom/coach-talk.webp": "50% 35%",
-  "/workshops/analysis/force-curve.webp": "28% center",
+  "/workshops/strength/gym-floor.webp": "50% 44%",
 };
 
 export function ExperiencePillars() {

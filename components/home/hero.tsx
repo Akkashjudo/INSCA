@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
 import { MaskedText } from "@/components/ui/masked-text";
 import { AccreditationLockup } from "@/components/layout/brand";
@@ -57,10 +58,12 @@ export function Hero() {
           className="t-hero mt-7 text-ink-900 sm:mt-9"
           lines={HEADLINE.map((text, i) =>
             i === HEADLINE.length - 1 ? (
-              <>
+              // Keyed: these are built in a map, so React expects a key even
+              // though MaskedText renders each line individually.
+              <Fragment key={text}>
                 {text}
                 <span className="text-insca-500">.</span>
-              </>
+              </Fragment>
             ) : (
               text
             ),
@@ -92,7 +95,7 @@ export function Hero() {
         <dl className="enter d-6 mt-10 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-hairline pt-8 sm:mt-12 sm:grid-cols-4">
           {facts.map(({ k, v }) => (
             <div key={k}>
-              <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink-400">
+              <dt className="text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-ink-400">
                 {k}
               </dt>
               <dd className="tabular mt-1.5 font-display text-[0.95rem] font-bold leading-snug text-ink-900">

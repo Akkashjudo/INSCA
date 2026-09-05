@@ -111,6 +111,20 @@ export const foundersMessage = {
 export const vision =
   "To establish India as a global leader in Strength & Conditioning education, research, and applied sports science — developing world-class professionals and creating internationally recognised standards of excellence.";
 
+/**
+ * Homepage summary.
+ *
+ * The full two-paragraph statement lives in `aboutParagraphs` and belongs on
+ * /about. On the homepage it was ~110 words competing with a photograph, a
+ * fact grid and a call to action; this is the same claim in two sentences,
+ * with the "About INSCA" button carrying anyone who wants the rest.
+ */
+export const aboutSummaryPoints = [
+  "Certification, workshops and conferences aligned to international standards.",
+  "For coaches, physiotherapists, sports scientists, educators and researchers.",
+  "Research and innovation that raise professional standards nationally.",
+] as const;
+
 export const aboutParagraphs = [
   "The Indian National Strength & Conditioning Association (INSCA) is a national professional organisation established to advance the science, education, and application of Strength & Conditioning across India.",
   "INSCA serves as a platform for coaches, physiotherapists, sports scientists, fitness professionals, researchers, and educators — providing internationally aligned education, certification programmes, workshops, conferences, and collaborative opportunities. Our goal is to raise professional standards, encourage research and innovation, and contribute to healthier individuals, stronger athletes, and a more physically prepared nation.",

@@ -14,7 +14,7 @@ import { Accent, SectionHeading } from "@/components/ui/section-heading";
  */
 export function Curriculum() {
   return (
-    <section id="curriculum" className="scroll-mt-24 section-y">
+    <section id="curriculum" className="section-y">
       <div className="wrap grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading

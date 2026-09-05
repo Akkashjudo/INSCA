@@ -72,7 +72,13 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 92px;
+    /*
+     * Anchor targets stop clear of the fixed header. This is the ONLY place
+     * that offset is expressed — the sections used to add `scroll-mt-24` on
+     * top of it as well, so #curriculum and friends landed 188px down the
+     * viewport with a band of empty space above the heading.
+     */
+    scroll-padding-top: 96px;
   }
 
   body {

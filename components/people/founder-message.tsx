@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { ReadMore } from "@/components/ui/read-more";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { foundersMessage } from "@/data/site";
 import { leadership } from "@/data/people";
@@ -9,7 +10,7 @@ const founder = leadership[0];
 
 export function FounderMessage() {
   return (
-    <section id="founder" className="scroll-mt-24 section-y">
+    <section id="founder" className="section-y">
       <div className="wrap">
         <SectionHeading
           eyebrow="President's message"
@@ -63,11 +64,28 @@ export function FounderMessage() {
                 {foundersMessage.pullQuote}
               </blockquote>
 
-              <div className="mt-8 space-y-5 text-ink-500 t-lead">
-                {foundersMessage.paragraphs.map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
-                ))}
-              </div>
+              {/*
+                The pull quote plus the opening paragraph is the message; the
+                remaining two are the detail behind it. Roughly 250 words
+                arrived in one block before, directly after a 60-word quote.
+                The rest stays in the DOM — crawlers and screen readers still
+                see it — but it opens on request rather than by default.
+              */}
+              <p className="mt-8 t-lead text-ink-500">
+                {foundersMessage.paragraphs[0]}
+              </p>
+
+              <ReadMore
+                className="mt-1"
+                moreLabel="Read the full message"
+                lessLabel="Show less"
+              >
+                <div className="space-y-5 pt-5 text-ink-500 t-lead">
+                  {foundersMessage.paragraphs.slice(1).map((p) => (
+                    <p key={p.slice(0, 24)}>{p}</p>
+                  ))}
+                </div>
+              </ReadMore>
 
               <div className="mt-9 flex items-center gap-4 border-t border-hairline pt-7">
                 <span aria-hidden="true" className="h-px w-10 bg-insca-500" />

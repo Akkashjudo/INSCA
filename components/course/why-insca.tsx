@@ -65,11 +65,11 @@ export function WhyInsca() {
           <div className="mt-4 sm:ml-auto sm:mt-5 sm:w-[78%]">
             <ImageReveal from="right" className="aspect-16/10 rounded-2xl" delay={0.05}>
               <Image
-                src="/workshops/analysis/force-curve.webp"
-                alt="Force–velocity data reviewed during an INSCA applied sports science session"
+                src="/workshops/practical/jump-demo.webp"
+                alt="Vertical jump demonstration during an INSCA practical session"
                 fill
                 sizes="(max-width: 640px) 100vw, 36vw"
-                className="object-cover object-[28%_center]"
+                className="object-cover object-[50%_40%]"
               />
             </ImageReveal>
           </div>

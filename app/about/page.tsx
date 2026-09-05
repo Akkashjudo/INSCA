@@ -14,7 +14,7 @@ import { fadeIn } from "@/lib/motion";
 export const metadata: Metadata = {
   title: "About INSCA",
   description:
-    "INSCA is India's national professional body for Strength & Conditioning — advancing education, certification, research and applied sports science. Read our vision, mission and leadership.",
+    "INSCA is India's national professional body for Strength & Conditioning — advancing education, certification and research. Our vision, mission and leadership.",
   alternates: { canonical: "/about" },
 };
 
@@ -37,8 +37,9 @@ export default function AboutPage() {
           </>
         }
         lead={aboutParagraphs[0]}
-        image="/workshops/classroom/full-room.webp"
-        imagePosition="50% 40%"
+        image="/workshops/classroom/demo-lecture.webp"
+        imageAlt="A live movement demonstration during an INSCA theory session at TACSS, Chennai"
+        imagePosition="50% 42%"
         crumbs={[
           { name: "Home", href: "/" },
           { name: "About INSCA", href: "/about" },

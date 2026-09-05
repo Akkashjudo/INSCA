@@ -3,18 +3,17 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 import { PageHeader } from "@/components/layout/page-header";
-import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
+import { RegistrationPanel } from "@/components/course/registration-panel";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
 import { AccreditationLockup } from "@/components/layout/brand";
 import { BreadcrumbSchema } from "@/components/seo/schema";
 import { contact, venue } from "@/data/site";
 import { leadership } from "@/data/people";
-import { level1A } from "@/data/course";
 
 export const metadata: Metadata = {
   title: "Contact INSCA",
-  description: `Contact the Indian National Strength & Conditioning Association. Call ${contact.phone} or email ${contact.email} for Level 1A certification enquiries and registration.`,
+  description: `Contact INSCA about the Level 1A certification. Call ${contact.phone} or email ${contact.email} — registration, eligibility and venue enquiries.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -105,26 +104,12 @@ export default function ContactPage() {
           {/* Registration card + map */}
           <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
             <Reveal>
-              <div className="rounded-2xl border border-insca-200 bg-insca-50 p-6 sm:p-8">
-                <span className="t-eyebrow text-insca-600">Register for Level 1A</span>
-                <h2 className="t-h3 mt-3.5 text-ink-900">
-                  Applications are open for the 2026 cohort
-                </h2>
-                <p className="mt-3.5 text-[0.93rem] leading-relaxed text-ink-600">
-                  {level1A.dateLabel} · {level1A.venueShort} · {level1A.durationDays}{" "}
-                  days · {level1A.hoursTotal} hours. Slots are limited and allocated{" "}
-                  {level1A.admission.toLowerCase()}.
-                </p>
-                <ButtonLink
-                  href={level1A.registrationUrl}
-                  size="lg"
-                  block
-                  className="mt-6"
-                >
-                  Join the Programme
-                  <ArrowGlyph />
-                </ButtonLink>
-              </div>
+              {/*
+                Same hierarchy as the course masthead — event, date, time,
+                location, deadline, then the CTA — so registration reads
+                identically wherever a visitor meets it.
+              */}
+              <RegistrationPanel />
 
               <div className="mt-6">
                 <AccreditationLockup />
@@ -152,6 +137,11 @@ export default function ContactPage() {
                       <p className="mt-1 font-display font-bold text-ink-900">
                         {person.name}
                       </p>
+                      {/*
+                        The official INSCA address already has its own card at
+                        the top of this page; repeating it under each office
+                        bearer printed the same string three times over.
+                      */}
                       <div className="mt-3 flex flex-wrap gap-2">
                         <a
                           href={person.phoneHref}
@@ -159,13 +149,6 @@ export default function ContactPage() {
                         >
                           <Phone className="size-3.5" aria-hidden="true" />
                           {person.phone}
-                        </a>
-                        <a
-                          href={`mailto:${person.email}`}
-                          className="inline-flex min-h-9 items-center gap-2 rounded-full border border-hairline px-3.5 text-[0.82rem] font-medium text-ink-600 transition-colors hover:border-insca-300 hover:text-insca-600"
-                        >
-                          <Mail className="size-3.5" aria-hidden="true" />
-                          {person.email}
                         </a>
                       </div>
                     </li>

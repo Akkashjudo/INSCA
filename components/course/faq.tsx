@@ -9,7 +9,7 @@ import { Accent, SectionHeading } from "@/components/ui/section-heading";
 
 export function Faq() {
   return (
-    <section id="faq" className="scroll-mt-24 section-y">
+    <section id="faq" className="section-y">
       <div className="wrap-tight">
         <SectionHeading
           eyebrow="FAQ"

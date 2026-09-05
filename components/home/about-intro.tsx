@@ -4,7 +4,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { SplitReveal } from "@/components/ui/split-reveal";
 import { ImageReveal } from "@/components/ui/image-reveal";
 import { Accent, SectionHeading } from "@/components/ui/section-heading";
-import { aboutParagraphs, site } from "@/data/site";
+import { aboutParagraphs, aboutSummaryPoints, site } from "@/data/site";
 
 /**
  * Verifiable institutional facts only — registration, accreditation, venue
@@ -34,11 +34,26 @@ export function AboutIntro() {
           />
 
           <Reveal delay={0.05}>
-            <div className="mt-7 space-y-5 text-ink-500 t-lead">
-              {aboutParagraphs.map((p) => (
-                <p key={p.slice(0, 24)}>{p}</p>
+            {/*
+              One paragraph, then three scannable points. The second
+              paragraph of the full statement is ~75 words and belongs on
+              /about, which the button below leads to.
+            */}
+            <p className="mt-7 t-lead text-ink-500">{aboutParagraphs[0]}</p>
+
+            <ul className="mt-6 space-y-2.5">
+              {aboutSummaryPoints.map((point) => (
+                <li key={point} className="flex items-start gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 size-1.5 shrink-0 rotate-45 bg-insca-500"
+                  />
+                  <span className="text-[0.95rem] leading-relaxed text-ink-600">
+                    {point}
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
               <ButtonLink href="/about" variant="outline" size="md">

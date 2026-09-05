@@ -46,8 +46,8 @@ export function FeaturedCourse() {
               <div className="absolute -bottom-8 -right-2 hidden w-44 overflow-hidden rounded-xl border-4 border-ink-950 sm:block lg:-right-8 lg:w-52">
                 <div className="relative aspect-4/3">
                   <Image
-                    src="/workshops/testing/sprint-lineup.webp"
-                    alt="INSCA participants lined up for sprint testing at TACSS"
+                    src="/workshops/testing/sprint-track.webp"
+                    alt="Sprint testing and timing session during an INSCA workshop at TACSS"
                     fill
                     sizes="220px"
                     className="object-cover"
@@ -80,7 +80,7 @@ export function FeaturedCourse() {
             <RevealGroup className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2" delayChildren={0.04}>
               {specs.map(({ icon: Icon, label, value }) => (
                 <RevealItem key={label}>
-                  <span className="flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-ink-400">
+                  <span className="flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.13em] text-ink-400">
                     <Icon className="size-3.5 text-insca-400" aria-hidden="true" />
                     {label}
                   </span>

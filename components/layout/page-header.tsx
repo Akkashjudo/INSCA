@@ -27,6 +27,7 @@ export function PageHeader({
   crumbs,
   children,
   align = "left",
+  priority = true,
 }: {
   eyebrow?: string;
   title: ReactNode;
@@ -37,6 +38,13 @@ export function PageHeader({
   crumbs?: Crumb[];
   children?: ReactNode;
   align?: "left" | "center";
+  /**
+   * The masthead photograph is the Largest Contentful Paint on every inner
+   * page, so it loads eagerly by default rather than waiting for the lazy
+   * observer. Pass `priority={false}` if a page ever pushes it far enough
+   * down that eager loading would only compete with the copy above it.
+   */
+  priority?: boolean;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-canvas-2 pt-32 sm:pt-40">
@@ -124,7 +132,7 @@ export function PageHeader({
               src={image}
               alt={imageAlt}
               fill
-              loading="lazy"
+              priority={priority}
               sizes="(max-width: 1280px) 100vw, 1240px"
               className="object-cover"
               style={{ objectPosition: imagePosition }}

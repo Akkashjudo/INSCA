@@ -25,8 +25,13 @@ export type WorkshopImage = {
   width: number;
   height: number;
   alt: string;
-  /** Short overlay label used in galleries. */
+  /**
+   * Short label, shown ONLY on the curated showcase sequence. The gallery
+   * itself is deliberately captionless — thirty-six titled thumbnails read
+   * as a list of headings rather than as photographs.
+   */
   caption: string;
+  /** Organises the library and mirrors the folder each file lives in. */
   category: WorkshopCategory;
 };
 
@@ -336,43 +341,32 @@ export const workshopImages: WorkshopImage[] = [
   },
 ];
 
-/** Human labels for each category, used by gallery filters. */
-export const categoryLabels: Record<WorkshopCategory, string> = {
-  practical: "Practical Demonstrations",
-  strength: "Strength Training",
-  testing: "Athlete Testing",
-  classroom: "Expert Sessions",
-  analysis: "Performance Analysis",
-  cpr: "Basic Life Support",
-  cohort: "The Cohort",
-  archive: "Earlier Workshops",
-};
-
-export function imagesIn(...categories: WorkshopCategory[]): WorkshopImage[] {
-  return workshopImages.filter((i) => categories.includes(i.category));
-}
-
 export function imageBySrc(src: string): WorkshopImage | undefined {
   return workshopImages.find((i) => i.src === src);
 }
 
-/** Hero image — the strongest action photograph in the library. */
-export const heroImage = workshopImages[0];
-
 /**
  * The five things a previous INSCA workshop demonstrably provides.
  * Each is paired with a real photograph rather than an illustration.
+ *
+ * IMAGE UNIQUENESS
+ * These five sit on the homepage directly beneath the showcase sequence, so
+ * they must not reuse anything that sequence — or the featured course block,
+ * or the focus-area panel — already shows. Three of them used to, and the
+ * homepage repeated the same barbell hinge, sprint line-up and force curve
+ * two and three times over. Check `workshop-showcase.tsx` before changing
+ * any of these.
  */
 export const experiencePillars = [
   {
     title: "Practical Learning",
     body: "Hands-on strength & conditioning sessions, coached on the floor rather than described on a slide.",
-    image: "/workshops/strength/barbell-hinge.webp",
+    image: "/workshops/strength/gym-briefing.webp",
   },
   {
     title: "Athlete Exposure",
     body: "Observe and understand how real athletes train inside a working high-performance centre.",
-    image: "/workshops/testing/sprint-lineup.webp",
+    image: "/workshops/testing/hurdle-drills.webp",
   },
   {
     title: "Performance Testing",
@@ -387,6 +381,6 @@ export const experiencePillars = [
   {
     title: "High-Performance Environment",
     body: "Experience the professional sports science and training systems used at TACSS, Chennai.",
-    image: "/workshops/analysis/force-curve.webp",
+    image: "/workshops/strength/gym-floor.webp",
   },
 ] as const;
