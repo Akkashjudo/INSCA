@@ -14,12 +14,30 @@ import { CourseSchema } from "@/components/seo/schema";
 import { SectionRule } from "@/components/ui/section-rule";
 
 export const metadata: Metadata = {
-  /* Kept inside what Google actually renders: ~60 chars of title, ~155 of
-     description. The longer form truncated mid-phrase in results. */
-  title: "INSCA — Indian National Strength & Conditioning Association",
+  /*
+   * Search appearance for the homepage.
+   *
+   * The title is 51 characters, inside the ~60 Google renders before it
+   * truncates. Open Graph and Twitter are NOT overridden here on purpose:
+   * Next replaces a parent `openGraph` object rather than merging into it,
+   * so declaring one would silently drop the social card image. The root
+   * layout carries both, and this page inherits them.
+   */
+  title: "INSCA | Strength & Conditioning Certification India",
   description:
-    "India's national professional body for Strength & Conditioning. The INSCA + SDAT Level 1A Certification in Chennai — 10 days, 80 hours, practical and applied.",
-  alternates: { canonical: "/" },
+    "Indian National Strength & Conditioning Association (INSCA). Explore professional strength and conditioning certifications, education and training programs in India.",
+  /*
+   * Absolute, and pointing at the www host the apex 308-redirects to.
+   *
+   * Next renders this as "https://www.insca.in" with no trailing slash and
+   * normalises any attempt to add one. That is not worth fighting: for an
+   * http(s) URL an empty path is equivalent to "/" (RFC 3986 6.2.3), so
+   * Google treats the two as the same URL. Forcing the slash would mean
+   * either `trailingSlash: true`, which rewrites every route on the site, or
+   * a hand-written second <link rel="canonical">, which is exactly the
+   * duplicate-canonical state that makes Google ignore both.
+   */
+  alternates: { canonical: "https://www.insca.in/" },
 };
 
 export default function HomePage() {

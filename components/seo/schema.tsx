@@ -31,7 +31,18 @@ export function OrganizationSchema() {
         name: site.name,
         alternateName: site.shortName,
         url: site.url,
-        logo: `${site.url}/brand/insca-logo.png`,
+        /*
+         * Declared as an ImageObject with its real dimensions rather than a
+         * bare URL, so the 112px-minimum Google applies to an organisation
+         * logo can be checked without fetching the file. 720x145 is the
+         * actual size of the wordmark in /public/brand.
+         */
+        logo: {
+          "@type": "ImageObject",
+          url: `${site.url}/brand/insca-logo.png`,
+          width: 720,
+          height: 145,
+        },
         description: site.description,
         foundingDate: site.foundingDate,
         identifier: site.registrationNo,

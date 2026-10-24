@@ -29,12 +29,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default:
-      "INSCA — Indian National Strength & Conditioning Association | Level 1A Certification",
+    /* Fallback for any route that does not set its own title; kept identical
+       to the homepage so the brand reads the same wherever it surfaces. */
+    default: "INSCA | Strength & Conditioning Certification India",
     template: "%s | INSCA",
   },
   description:
-    "India's national professional body for Strength & Conditioning. The INSCA + SDAT Level 1A Certification in Chennai — 10 days, 80 hours, practical and applied.",
+    "Indian National Strength & Conditioning Association (INSCA). Explore professional strength and conditioning certifications, education and training programs in India.",
   keywords: [
     "Strength and Conditioning Certification India",
     "INSCA Level 1A",
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
     siteName: `${site.shortName} — ${site.name}`,
     locale: "en_IN",
     url: site.url,
-    title: "Built for High Performance Sport — INSCA Level 1A Certification",
+    title: "INSCA | Strength & Conditioning Certification India",
     description:
-      "A 10-day, 80-hour INSCA + SDAT accredited Strength & Conditioning certification at TACSS, Chennai. Practical coaching, athlete monitoring and applied sports science.",
+      "Indian National Strength & Conditioning Association (INSCA). Explore professional strength and conditioning certifications, education and training programs in India.",
     images: [
       {
         url: "/workshops/practical/overhead-demo.webp",
@@ -73,17 +74,26 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "INSCA + SDAT Level 1A Strength & Conditioning Certification",
+    title: "INSCA | Strength & Conditioning Certification India",
     description:
-      "10 days. 80 hours. Built for high performance sport. TACSS, Chennai — 23 Sep to 2 Oct 2026.",
+      "Indian National Strength & Conditioning Association (INSCA). Explore professional strength and conditioning certifications, education and training programs in India.",
     images: ["/workshops/practical/overhead-demo.webp"],
   },
+  /*
+   * One icon set, declared once. The .ico is a genuine multi-resolution file
+   * (16, 32 and 48px inside it) — 48px is the size Google indexes for the
+   * search-result favicon, so it is listed first and its sizes are explicit
+   * rather than "any". The SVG covers high-DPI browser tabs and the two PNGs
+   * give crawlers and Android a raster path without going via the manifest.
+   */
   icons: {
     icon: [
-      { url: "/icons/favicon.ico", sizes: "any" },
-      { url: "/icons/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon.ico", sizes: "48x48 32x32 16x16", type: "image/x-icon" },
+      { url: "/icons/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: "/icons/apple-touch-icon.png",
+    apple: { url: "/icons/apple-touch-icon.png", sizes: "180x180" },
   },
   manifest: "/site.webmanifest",
 };
