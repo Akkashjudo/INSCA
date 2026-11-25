@@ -13,9 +13,18 @@
 export type FeeTier = {
   label: string;
   amount: number;
-  /** Human-readable condition, e.g. "First Come – First Serve". */
+  /** Human-readable condition, e.g. "On or before 15 February 2027". */
   condition: string;
   featured?: boolean;
+  /**
+   * Offer validity for the Course JSON-LD, as ISO instants. Declared per
+   * tier so the structured data stays derived from `fees` rather than
+   * indexing into it — a third tier would need no code change.
+   */
+  validThrough?: string;
+  validFrom?: string;
+  /** schema.org offer category, e.g. "EarlyBird". */
+  category?: string;
 };
 
 export const level1A = {
@@ -88,20 +97,34 @@ export const level1A = {
   currency: "INR",
 
   /**
-   * ONE FEE, NO DEADLINE.
+   * EARLY BIRD CUT-OFF.
    *
-   * The 2nd batch carried an Early Bird tier (₹45,000 before a cut-off,
-   * ₹50,000 after). The 3rd batch drops it: there is a single course fee
-   * and places go first come, first serve. `fees` stays an array so a tier
-   * can be reinstated later without touching any component — everything
-   * that renders pricing maps over it rather than indexing into it.
+   * 15 February 2027 is the dividing line: ₹45,000 up to and including that
+   * day, ₹50,000 from the 16th. The brief gave the date but no clock time,
+   * so none is invented — the deadline runs to the end of the 15th, Indian
+   * Standard Time, and the labels say "on or before" / "after" rather than
+   * quoting an hour the brochure does not state.
+   *
+   * The saving shown on the featured card is computed from these two
+   * amounts, never typed, so it cannot drift out of step with them.
    */
+  earlyBirdDeadline: "2027-02-15T23:59:59+05:30",
+  earlyBirdDeadlineLabel: "15 February 2027",
+
   fees: [
     {
-      label: "Course fee",
-      amount: 50000,
-      condition: "First Come – First Serve · limited slots",
+      label: "Early Bird",
+      amount: 45000,
+      condition: "On or before 15 February 2027",
       featured: true,
+      validThrough: "2027-02-15T23:59:59+05:30",
+      category: "EarlyBird",
+    },
+    {
+      label: "Regular",
+      amount: 50000,
+      condition: "After 15 February 2027",
+      validFrom: "2027-02-16T00:00:00+05:30",
     },
   ] satisfies FeeTier[],
 

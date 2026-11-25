@@ -1,6 +1,6 @@
 import { CalendarDays, Clock, MapPin, Timer } from "lucide-react";
 import { ArrowGlyph, ButtonLink } from "@/components/ui/button";
-import { level1A } from "@/data/course";
+import { level1A, formatFee } from "@/data/course";
 import { venue } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -39,9 +39,11 @@ const rows = [
   },
   {
     icon: Timer,
-    label: "Registration",
-    value: level1A.admission,
-    sub: "Places are limited and allocated in the order applications arrive.",
+    label: "Early Bird deadline",
+    value: `Save ${formatFee(
+      Math.max(...level1A.fees.map((f) => f.amount)) - level1A.fees[0].amount,
+    )} on or before ${level1A.earlyBirdDeadlineLabel}`,
+    sub: `${level1A.admission} · limited slots`,
   },
 ];
 

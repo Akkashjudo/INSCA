@@ -21,7 +21,7 @@ export const faqs = [
   },
   {
     question: "What does the course fee cover?",
-    answer: `The course fee is ${formatFee(level1A.fees[0].amount)} for the ${level1A.batch}, allocated ${level1A.admission.toLowerCase()} while places last. It includes ${level1A.included.map((i) => i.toLowerCase()).join(", ")}.`,
+    answer: `Early Bird registration for the ${level1A.batch} is ${formatFee(level1A.fees[0].amount)} on or before ${level1A.earlyBirdDeadlineLabel} — a saving of ${formatFee(level1A.fees[1].amount - level1A.fees[0].amount)}. After that the fee is ${formatFee(level1A.fees[1].amount)}. It includes ${level1A.included.map((i) => i.toLowerCase()).join(", ")}.`,
   },
   {
     question: "How much of the course is practical?",

@@ -100,7 +100,8 @@ export function CourseSchema() {
             name: level1A.venue,
             address: postalAddress,
           },
-          /* Derived from `fees`, so reinstating a tier needs no change here. */
+          /* Derived from `fees`; validity and category come from the tier
+             itself, so adding or removing one needs no change here. */
           offers: level1A.fees.map((fee) => ({
             "@type": "Offer",
             name: fee.label,
@@ -108,6 +109,9 @@ export function CourseSchema() {
             priceCurrency: level1A.currency,
             url: level1A.registrationUrl,
             availability: "https://schema.org/LimitedAvailability",
+            ...(fee.validThrough ? { validThrough: fee.validThrough } : {}),
+            ...(fee.validFrom ? { validFrom: fee.validFrom } : {}),
+            ...(fee.category ? { category: fee.category } : {}),
           })),
         },
       }}

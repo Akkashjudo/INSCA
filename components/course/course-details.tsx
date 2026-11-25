@@ -19,7 +19,11 @@ const rows = [
   { k: "Time", v: level1A.timeLabel },
   { k: "Duration", v: level1A.durationLabel },
   { k: "Learning duration", v: `${level1A.hoursTotal} hours` },
-  { k: "Registration", v: level1A.admission, sub: "Limited slots" },
+  {
+    k: "Registration",
+    v: level1A.admission,
+    sub: `Limited slots · Early Bird closes ${level1A.earlyBirdDeadlineLabel}`,
+  },
   { k: "Certification", v: level1A.certification },
 ];
 
@@ -86,6 +90,15 @@ export function CourseDetails() {
                       : "border-hairline bg-white",
                   )}
                 >
+                  {fee.featured && level1A.fees.length > 1 ? (
+                    <span className="absolute -top-2.5 left-6 rounded-full bg-insca-500 px-3 py-1 font-display text-[0.72rem] font-bold uppercase tracking-[0.13em] text-white">
+                      Save{" "}
+                      {formatFee(
+                        Math.max(...level1A.fees.map((f) => f.amount)) - fee.amount,
+                      )}
+                    </span>
+                  ) : null}
+
                   <span className="font-display text-[0.8rem] font-bold uppercase tracking-[0.13em] text-ink-400">
                     {fee.label}
                   </span>
@@ -128,8 +141,9 @@ export function CourseDetails() {
                   Slots are limited and allocated first come, first serve.
                 </p>
                 <p className="mt-2 text-[0.88rem] leading-relaxed text-ink-600">
-                  {level1A.batch} runs {level1A.dateLabel} at{" "}
-                  {level1A.venueShort}.
+                  Early Bird pricing closes {level1A.earlyBirdDeadlineLabel} —
+                  after that the fee is{" "}
+                  {formatFee(Math.max(...level1A.fees.map((f) => f.amount)))}.
                 </p>
                 <ButtonLink
                   href={level1A.registrationUrl}
