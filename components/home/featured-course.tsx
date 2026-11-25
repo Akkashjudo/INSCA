@@ -100,8 +100,7 @@ export function FeaturedCourse() {
                   {level1A.fees[0].label}
                 </span>
                 <span className="w-full text-xs text-ink-400 sm:w-auto">
-                  · {formatFee(level1A.fees[1].amount)} after{" "}
-                  {level1A.earlyBirdDeadlineLabel}
+                  · {level1A.batch} · {level1A.admission}
                 </span>
               </div>
 

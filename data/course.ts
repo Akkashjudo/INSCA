@@ -2,15 +2,18 @@
  * INSCA + SDAT Level 1A Strength & Conditioning Certification.
  *
  * SINGLE SOURCE OF TRUTH. Every page, CTA, meta tag and JSON-LD block
- * reads from this object — updating a future cohort means editing here only.
+ * reads from this object — rolling the course to a new batch means editing
+ * here only. All eleven registration CTAs read `registrationUrl`, and every
+ * date shown anywhere on the site derives from the fields below.
  *
- * Source: "INSCA_Level_1A_Brochure_Draft_2nd.docx" (official course brochure).
+ * Source: "INSCA_Level_1A_Brochure_Draft_2nd.docx" (official course brochure),
+ * updated for the 3rd batch (February–March 2027).
  */
 
 export type FeeTier = {
   label: string;
   amount: number;
-  /** Human-readable condition, e.g. "Until 18 September 2026, 5:00 PM". */
+  /** Human-readable condition, e.g. "First Come – First Serve". */
   condition: string;
   featured?: boolean;
 };
@@ -36,10 +39,25 @@ export const level1A = {
   // ---- Logistics -------------------------------------------------------
   venue: "Tamil Nadu Centre for Sports Science (TACSS), Chennai",
   venueShort: "TACSS, Chennai",
-  startDate: "2026-09-23",
-  endDate: "2026-10-02",
-  dateLabel: "September 23 – October 2, 2026",
-  dateLabelShort: "23 Sep – 2 Oct 2026",
+
+  /** Which running of the course these dates belong to. */
+  batch: "3rd Batch",
+
+  startDate: "2027-02-22",
+  endDate: "2027-03-04",
+  dateLabel: "February 22 – March 4, 2027",
+  dateLabelShort: "22 Feb – 4 Mar 2027",
+
+  /**
+   * TEACHING DAYS, NOT CALENDAR DAYS.
+   *
+   * 22 Feb 2027 is a Monday and 4 Mar a Thursday, so the batch spans ELEVEN
+   * calendar days — but exactly one of them is a Sunday (28 Feb). Ten
+   * teaching days with that Sunday off is what matches the brochure's
+   * 10-day / 80-hour structure, the "lunch for all 10 days" inclusion and
+   * the "10 Days" headline stat, so the course length is carried over
+   * unchanged rather than being inflated to match the span.
+   */
   durationDays: 10,
   hoursTotal: 80,
   hoursPerDay: 8,
@@ -58,35 +76,32 @@ export const level1A = {
   certification: "INSCA + SDAT Accredited Certification",
 
   // ---- Registration ----------------------------------------------------
-  /** Official Google Form, taken from the Level 1A brochure. */
-  registrationUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLSeCT2fZLXipAAQvlF0zCNRtnpnC1uActMZs4Ajwy8iQAA6i2Q/viewform",
+  /**
+   * Official Google Form for the current batch. Every "Register", "Apply"
+   * and "Enrol" control on the site resolves to this one value — the navbar,
+   * the hero, the featured block, the registration panel, the course details
+   * card, the final CTA, the footer, the mobile sticky bar and the two
+   * JSON-LD offers.
+   */
+  registrationUrl: "https://forms.gle/5xZt51nWBKy2E7JG8",
 
   currency: "INR",
 
   /**
-   * NOTE ON THE FEE DEADLINE
-   * The official brochure states the regular ₹50,000 fee applies
-   * "After September 18th 2026, 5:00 pm". No other supplied file
-   * (existing website, assets, sitemap, schema) contains a fee or a
-   * competing date, so the brochure is the only authority available.
-   * If the deadline moves, change `earlyBirdDeadline` + the two
-   * `condition` strings below — nothing else references the date.
+   * ONE FEE, NO DEADLINE.
+   *
+   * The 2nd batch carried an Early Bird tier (₹45,000 before a cut-off,
+   * ₹50,000 after). The 3rd batch drops it: there is a single course fee
+   * and places go first come, first serve. `fees` stays an array so a tier
+   * can be reinstated later without touching any component — everything
+   * that renders pricing maps over it rather than indexing into it.
    */
-  earlyBirdDeadline: "2026-09-18T17:00:00+05:30",
-  earlyBirdDeadlineLabel: "18 September 2026, 5:00 PM",
-
   fees: [
     {
-      label: "Early Bird",
-      amount: 45000,
-      condition: "On or before 18 September 2026, 5:00 PM",
-      featured: true,
-    },
-    {
-      label: "Regular",
+      label: "Course fee",
       amount: 50000,
-      condition: "After 18 September 2026, 5:00 PM",
+      condition: "First Come – First Serve · limited slots",
+      featured: true,
     },
   ] satisfies FeeTier[],
 

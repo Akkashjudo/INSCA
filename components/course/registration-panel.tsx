@@ -39,9 +39,9 @@ const rows = [
   },
   {
     icon: Timer,
-    label: "Registration deadline",
-    value: `Early Bird closes ${level1A.earlyBirdDeadlineLabel}`,
-    sub: `${level1A.admission} · limited slots`,
+    label: "Registration",
+    value: level1A.admission,
+    sub: "Places are limited and allocated in the order applications arrive.",
   },
 ];
 
@@ -70,6 +70,11 @@ export function RegistrationPanel({ className }: { className?: string }) {
         <h2 className="mt-3 font-display text-[1.15rem] font-bold leading-snug text-ink-900 sm:text-[1.3rem]">
           INSCA + SDAT {level1A.title}
         </h2>
+
+        {/* Which running of the course these dates belong to. */}
+        <p className="mt-2 inline-flex items-center rounded-full bg-insca-50 px-3 py-1 font-display text-[0.78rem] font-bold uppercase tracking-[0.1em] text-insca-600">
+          {level1A.batch}
+        </p>
 
         <dl className="mt-6 space-y-4 border-t border-hairline pt-5">
           {rows.map(({ icon: Icon, label, value, sub }) => (

@@ -21,7 +21,7 @@ export const faqs = [
   },
   {
     question: "What does the course fee cover?",
-    answer: `Early Bird registration is ${formatFee(level1A.fees[0].amount)} on or before ${level1A.earlyBirdDeadlineLabel}; the regular fee is ${formatFee(level1A.fees[1].amount)} thereafter. The fee includes ${level1A.included.map((i) => i.toLowerCase()).join(", ")}.`,
+    answer: `The course fee is ${formatFee(level1A.fees[0].amount)} for the ${level1A.batch}, allocated ${level1A.admission.toLowerCase()} while places last. It includes ${level1A.included.map((i) => i.toLowerCase()).join(", ")}.`,
   },
   {
     question: "How much of the course is practical?",

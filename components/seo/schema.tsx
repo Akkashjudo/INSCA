@@ -71,9 +71,6 @@ export function OrganizationSchema() {
 }
 
 export function CourseSchema() {
-  const early = level1A.fees[0];
-  const regular = level1A.fees[1];
-
   return (
     <JsonLd
       data={{
@@ -93,6 +90,7 @@ export function CourseSchema() {
         inLanguage: "en",
         hasCourseInstance: {
           "@type": "CourseInstance",
+          name: `${level1A.shortTitle} — ${level1A.batch}`,
           courseMode: "onsite",
           courseWorkload: `PT${level1A.hoursTotal}H`,
           startDate: level1A.startDate,
@@ -102,27 +100,15 @@ export function CourseSchema() {
             name: level1A.venue,
             address: postalAddress,
           },
-          offers: [
-            {
-              "@type": "Offer",
-              name: early.label,
-              price: early.amount,
-              priceCurrency: level1A.currency,
-              url: level1A.registrationUrl,
-              availability: "https://schema.org/LimitedAvailability",
-              validThrough: level1A.earlyBirdDeadline,
-              category: "EarlyBird",
-            },
-            {
-              "@type": "Offer",
-              name: regular.label,
-              price: regular.amount,
-              priceCurrency: level1A.currency,
-              url: level1A.registrationUrl,
-              availability: "https://schema.org/LimitedAvailability",
-              validFrom: level1A.earlyBirdDeadline,
-            },
-          ],
+          /* Derived from `fees`, so reinstating a tier needs no change here. */
+          offers: level1A.fees.map((fee) => ({
+            "@type": "Offer",
+            name: fee.label,
+            price: fee.amount,
+            priceCurrency: level1A.currency,
+            url: level1A.registrationUrl,
+            availability: "https://schema.org/LimitedAvailability",
+          })),
         },
       }}
     />

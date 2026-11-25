@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 const rows = [
   { k: "Programme", v: `INSCA + SDAT ${level1A.title}` },
+  { k: "Batch", v: level1A.batch },
   {
     k: "Venue",
     v: level1A.venue,
@@ -18,11 +19,7 @@ const rows = [
   { k: "Time", v: level1A.timeLabel },
   { k: "Duration", v: level1A.durationLabel },
   { k: "Learning duration", v: `${level1A.hoursTotal} hours` },
-  {
-    k: "Registration",
-    v: level1A.admission,
-    sub: `Limited slots · Early Bird closes ${level1A.earlyBirdDeadlineLabel}`,
-  },
+  { k: "Registration", v: level1A.admission, sub: "Limited slots" },
   { k: "Certification", v: level1A.certification },
 ];
 
@@ -75,7 +72,10 @@ export function CourseDetails() {
 
           {/* Pricing + inclusions */}
           <div className="space-y-5">
-            <RevealGroup className="grid gap-4 sm:grid-cols-2" staggerChildren={0.05}>
+            <RevealGroup
+              className={cn("grid gap-4", level1A.fees.length > 1 && "sm:grid-cols-2")}
+              staggerChildren={0.05}
+            >
               {level1A.fees.map((fee) => (
                 <RevealItem
                   key={fee.label}
@@ -86,12 +86,6 @@ export function CourseDetails() {
                       : "border-hairline bg-white",
                   )}
                 >
-                  {fee.featured ? (
-                    <span className="absolute -top-2.5 left-6 rounded-full bg-insca-500 px-3 py-1 font-display text-[0.72rem] font-bold uppercase tracking-[0.13em] text-white">
-                      Save {formatFee(level1A.fees[1].amount - fee.amount)}
-                    </span>
-                  ) : null}
-
                   <span className="font-display text-[0.8rem] font-bold uppercase tracking-[0.13em] text-ink-400">
                     {fee.label}
                   </span>
@@ -134,7 +128,8 @@ export function CourseDetails() {
                   Slots are limited and allocated first come, first serve.
                 </p>
                 <p className="mt-2 text-[0.88rem] leading-relaxed text-ink-600">
-                  Early Bird pricing closes {level1A.earlyBirdDeadlineLabel}.
+                  {level1A.batch} runs {level1A.dateLabel} at{" "}
+                  {level1A.venueShort}.
                 </p>
                 <ButtonLink
                   href={level1A.registrationUrl}

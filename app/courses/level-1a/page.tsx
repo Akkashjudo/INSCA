@@ -107,8 +107,7 @@ export default function Level1APage() {
                 {level1A.fees[0].label}
               </span>
               <span className="w-full text-[0.82rem] text-ink-500 sm:w-auto">
-                · {formatFee(level1A.fees[1].amount)} after{" "}
-                {level1A.earlyBirdDeadlineLabel}
+                · {level1A.admission}
               </span>
             </div>
 
